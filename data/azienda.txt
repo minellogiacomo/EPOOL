@@ -1,0 +1,5 @@
+unicredit	ViaNapoleone1	123456789	1111111
+montepaschi	ViaBonaparte13	987654321	2222222
+suissebank	ViaNerone15	456789123	3333333
+mediolanum	ViaTutankamon17	789123456	4444444
+intesa	ViaBerlusconi9	657894321	5555555
