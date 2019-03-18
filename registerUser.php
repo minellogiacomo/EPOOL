@@ -32,8 +32,6 @@ if(isset($_POST['signup'])){
       echo "messaggio dal server : $res";
       // exit();
     }
-    
-  
 
 }
 
