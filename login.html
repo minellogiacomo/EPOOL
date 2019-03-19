@@ -1,41 +1,92 @@
 <!DOCTYPE html>
 
+<!DOCTYPE html>
 <html>
-	
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
 
-	
+
+input[type=text], input[type=password] {
+  width: 100%;
+	length: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 18px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+	margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: auto;
+  background-color: #f44336;
+}
+
+.container {
+	padding-top: 10px;
+	padding-right: 600px;
+	padding-left: 20px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+</style>
 </head>
-
 <body>
-	
-	<div id = "Header">
-		<hr><h2 class="ex1"> LOGIN </h2></hr>
-	</div>
 
-	<div class="center" id = content>
-		<form method="post" action="index.php"">
-			<table>
-				<tr>
-					<td> <b class="ex1"> Username:   </b></td>
-					<td><input type="text" name="username" placeholder="Username" required /></td>
-				</tr>
-				<tr>
-					<td> <b class="ex1"> Password:   </b></td>
-					<td><input type="password" name="password" placeholder="********" required /></td>
-				</tr>
-			</table>
-			<input type="submit" name="submit" value="Login" />
-		</form>
-		<div>
+<form action="/action_page.php">
+  </div>
+
+  <div class="container">
+		<div id = "Header" align="center">
+		<h2>Login</h2>
+		</div>
+    <label for="uname"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="uname" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+
+    <button type="submit">Login</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+
+     <div>
+    <button type="button" class="cancelbtn">Cancel</button>
+
+  </div>
+</form>
+
+<div>
 		<a href= "registerUser.php" class="text-center new-account">Create an Account </a>
 	    </div>
 		<div>
 		<a href= "registerBusiness.php" class="text-center new-account">Create a Business Account </a>
 	    </div>
-		
-	</div>
-
 
 </body>
 </html>
