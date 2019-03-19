@@ -5,7 +5,7 @@
         session_start();
         echo "creo sessione register ";
     } 
-include_once('user.php');
+include_once('business.php');
 
 if(isset($_POST['signup'])){
   
