@@ -3,11 +3,9 @@
 
 include_once('connection.php');
 
- if(!isset($_SESSION)) 
-    { 
-        session_start();
-        // echo "creo sessione utente ";
-    }
+if(!isset($_SESSION)){ 
+    session_start(); 
+}
 
 
 /**
@@ -378,18 +376,6 @@ class User
   		return $res;
 	}
 
-	// public function sendAckVisualized($receiver){
-
-	// 	$query = $this -> db -> prepare("CALL AckMessageReceived('$receiver',@res)");
-	// 	$query -> execute();
-	// 	$query2 = $this -> db -> prepare("SELECT @res");
-	// 	$query2 -> execute();
-	// 	$result = $query2 -> fetch();
-	// 	$risultato = $result['@res'];
-	// 	if ($risultato != 1){
-	// 		echo "[ERRORE] AckMessage doesn't works ";
-	// 	}
-	// }
 }
 
 
