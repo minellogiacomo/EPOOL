@@ -4,7 +4,7 @@ class Connection
 	
 	public function dbConnect(){
 		try {
-      		$pdo=new PDO('mysql:host=localhost;dbname=EPOOL','root', '');
+      		$pdo=new PDO('mysql:host=localhost;dbname=EPOOL','root','');
       		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    		}
    		catch(PDOException $e) {
