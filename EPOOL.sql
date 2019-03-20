@@ -256,32 +256,18 @@ END;
 |
 DELIMITER ;
 
-DELIMITER
-|
+DELIMITER |
 	
 create PROCEDURE Login (IN Email varchar(30), IN pasw varchar(30), OUT result BOOLEAN)
 	BEGIN
 		DECLARE statoUtente int;
-		SET statoUtente = (SELECT u.Stato
-						   FROM Utente AS u
-						   WHERE u.Email = EMAIL);
-		IF(statoUtente = 1) THEN
-			IF NOT EXISTS(SELECT *
-						  FROM Utente AS u
-						  WHERE u.Email = EMAIL) THEN
-				SET result = (FALSE);
+        IF EXISTS(SELECT *
+						  FROM UTENTE
+						  WHERE UTENTE.EMAIL = Email AND UTENTE.PW=pasw) THEN
+				SET result = (TRUE);
 			ELSE
-				IF NOT EXISTS(SELECT *
-						      FROM Utente AS u
-						      WHERE u.Email = EMAIL AND u.pasw = PW) THEN
-					SET result = (FALSE);
-				ELSE
-					SET result = (TRUE);		
-				END IF;
-			END IF;
-		ELSE 
-			SET result = (FALSE);
-		END IF;
+			    SET result = (FALSE);
+		
 	END;
 |
 DELIMITER ;
