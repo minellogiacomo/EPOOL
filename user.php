@@ -26,7 +26,7 @@ class User
 	
 		try {
     		
-			$query = $this -> db -> prepare("CALL STOREDPROCEDURE NAME!!!!! ('$nickname','$password',@res)");
+			$query = $this -> db -> prepare("CALL Login('$email','$password',@res)");
 			$query -> execute();
 			$query2 = $this -> db -> prepare("SELECT @res");
 			$query2 -> execute();
