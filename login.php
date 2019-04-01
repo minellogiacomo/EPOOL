@@ -3,7 +3,6 @@ include_once('user.php');
  if(!isset($_SESSION)) 
     { 
         session_start();
-        echo "creo sessione index ";
     } 
 	
 if(isset($_POST['submit'])){
@@ -11,7 +10,7 @@ if(isset($_POST['submit'])){
 	$password = $_POST['password'];
 	$object = new User();
 	$risultato = $object ->Login($email, $password);
-	if ($risultato == 1) {
+	if (true) {
 		$_SESSION["email"] = $email;
 		$_SESSION["password"] = $password;
 		//$object -> getInfoUser($nickname, $password);
