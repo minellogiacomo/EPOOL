@@ -90,7 +90,9 @@ class User
 			$result = $query_select_signup ->fetch();
 			$query_select_signup->closeCursor();
 			// $this -> db ->closeCursor();
-
+            
+			//TO DO: ADD MONGODB LOG query+log
+			
 			//$risultato = $result['@res']; 
 
 		}catch(PDOException $e) {

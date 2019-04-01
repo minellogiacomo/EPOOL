@@ -6,6 +6,6 @@ if(!isset($_SESSION))
 
 ?>
 <?php include('header.html');?>
-<?php include('menu.html');?>
+<?php include('menuUser.html');?>
 <?php include('homeUser.html');?>
 <?php include('footer.html');?>
