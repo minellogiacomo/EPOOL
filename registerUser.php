@@ -26,7 +26,7 @@ if(isset($_POST['signup'])){
       $_SESSION["datan"] = $dataNascita;
       $_SESSION["regione"] = $regione;
       $_SESSION["stato"] = $stato;
-
+      header("Location: homeUser.php");
     }else{
       echo "Utente già presente nella piattaforma.";
       echo "messaggio dal server : $res";
