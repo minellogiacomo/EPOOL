@@ -12,6 +12,8 @@ if(isset($_POST['submit'])){
 	$object = new User();
 	$risultato = $object ->Login($email, $password);
 	if ($risultato == 1) {
+		$_SESSION["email"] = $email;
+		$_SESSION["password"] = $password;
 		//$object -> getInfoUser($nickname, $password);
 		header("Location: homeUser.php"); 
 		die();
