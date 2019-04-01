@@ -13,23 +13,17 @@ if(isset($_POST['signup'])){
   $email=$_POST['email'];
   $password=$_POST['password'];
   $dataNascita=$_POST['datanascita'];
-  $citta=addslashes($_POST['citta']);
+  $citta=$_POST['citta'];
 
   $object = new User();
-  $res = $object -> Signup($nome, $cognome, $email,  $password, $dataNascita);
-    if ($res == 1) {
-      $_SESSION["uname"] = $nickname;
-      $_SESSION["psswd"] = $password;
-      $_SESSION["citta"] = $cittaResidenza;
-      $_SESSION["tipo"] = $tipo;
+  $res = $object -> registerUser($nome, $cognome, $email,  $password, $dataNascita, $citta);
+    if (TRUE) {
       $_SESSION["email"] = $email;
-      $_SESSION["datan"] = $dataNascita;
-      $_SESSION["regione"] = $regione;
-      $_SESSION["stato"] = $stato;
-      header("Location: homeUser.php");
+      $_SESSION["password"] = $password;
+	  header("Location: login.php");
     }else{
-      echo "Utente già presente nella piattaforma.";
-      echo "messaggio dal server : $res";
+      //echo "Utente già presente nella piattaforma.";
+      //echo "messaggio dal server : $res";
       // exit();
     }
 

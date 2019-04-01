@@ -76,39 +76,12 @@ class User
   		}
 	}
 
-	public function Signup($nickname, $email, $password, $nascita, $cittaResidenza, $regione, $stato, $tipo){
+	public function registerUser($nome, $cognome, $email, $password, $dataNascita, $citta){
 		
-
-		try {
-			$cittaResidenza = addslashes($cittaResidenza);
-			$regione = addslashes($regione);
-			$stato = addslashes($stato);
-			$query_insertCitta = $this -> db -> prepare("CALL InsertCitta('$cittaResidenza','$regione','$stato',@res)");
-			$query_insertCitta -> execute();
-			$query_insertCitta ->closeCursor();
-			
-			$query_select_insertCitta = $this -> db -> prepare("SELECT @res");
-			$query_select_insertCitta -> execute();
-			$result = $query_select_insertCitta ->fetch();
-			$query_select_insertCitta ->closeCursor();
-			
-			$risultato = $result['@res'];
-
-
-		}catch(PDOException $e) {
-    		return ("[ERRORE] InsertCitta non riuscito. Errore: ".$e->getMessage());
-    		// exit();
-  		}
-	
-		if ($risultato == 1) {
-			echo "La citta non era presente nel db, ora è stata inserita\n";
-		}else{
-			echo "La citta era già presente nel db\n";
-		}
 
 		try{
 
-			$query_signup = $this -> db -> prepare("CALL SignUp('$nickname','$email','$password','$nascita','$cittaResidenza','$tipo',@res)");
+			$query_signup = $this -> db -> prepare("CALL RegistrazioneUtente ('$email','$password', '$nome', '$cognome','$dataNascita','$citta')");
 			$query_signup -> execute();
 			$query_signup->closeCursor();
 
@@ -118,14 +91,14 @@ class User
 			$query_select_signup->closeCursor();
 			// $this -> db ->closeCursor();
 
-			$risultato = $result['@res']; 
+			//$risultato = $result['@res']; 
 
 		}catch(PDOException $e) {
     		return ("[ERRORE] SignUp non riuscito. Errore: ".$e->getMessage());
     		// exit();
   		}
 
-		return $risultato;
+		//return $risultato;
 	}
 
 	public function getInfoUser($nickname,$password){

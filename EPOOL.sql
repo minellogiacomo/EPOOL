@@ -232,7 +232,7 @@ DELIMITER ;
 
 DELIMITER |
 
-CREATE PROCEDURE RegistrazioneSemplice (IN EmailN varchar(30), IN pasw varchar(30), IN nome varchar(30), IN cognome varchar (30),
+CREATE PROCEDURE RegistrazioneUtente (IN EmailN varchar(30), IN pasw varchar(30), IN nome varchar(30), IN cognome varchar (30),
 	IN datanascita date, IN luogo varchar (50))
 	
     BEGIN
@@ -243,7 +243,7 @@ CREATE PROCEDURE RegistrazioneSemplice (IN EmailN varchar(30), IN pasw varchar(3
 		THEN 
         
         
-        INSERT INTO UTENTE_SEMPLICE  (EMAILS, PW, NOME, COGNOME, DATANASCITA, LUOGO) VALUES (EmailN, pasw, nome, cognome, datanascita, luogo);
+        INSERT INTO UTENTE (EMAIL, PW, NOME, COGNOME, DATANASCITA, LUOGO) VALUES (EmailN, pasw, nome, cognome, datanascita, luogo);
 		commit work;
         
      ELSE
