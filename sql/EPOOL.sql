@@ -227,10 +227,11 @@ DELIMITER ;
 DELIMITER |
 
 CREATE PROCEDURE RegistrazioneUtente (IN EmailN varchar(30), IN pasw varchar(30), IN nome varchar(30), IN cognome varchar (30),
-	IN datanascita date, IN luogo varchar (50))
+	IN datanascita date, IN luogo varchar (50), OUT result BOOLEAN)
 	
     BEGIN
     start transaction;
+	SET result = (FALSE);
          IF NOT EXISTS ( SELECT EMAIL
 			           FROM UTENTE
 				       WHERE EMAIL = EmailN)
@@ -238,6 +239,7 @@ CREATE PROCEDURE RegistrazioneUtente (IN EmailN varchar(30), IN pasw varchar(30)
         
         
         INSERT INTO UTENTE (EMAIL, PW, NOME, COGNOME, DATANASCITA, LUOGO) VALUES (EmailN, pasw, nome, cognome, datanascita, luogo);
+		SET result = (TRUE);
 		commit work;
         
      ELSE
@@ -269,10 +271,11 @@ DELIMITER ;
 DELIMITER |
 
 CREATE PROCEDURE RegistrazioneAziendale (IN Email varchar(30), IN pasw varchar(30), IN nome varchar(30), IN cognome varchar (30),
-	IN datanascita date, IN luogo varchar (50), IN nomeazienda varchar (30))
+	IN datanascita date, IN luogo varchar (50), IN nomeazienda varchar (30), OUT result BOOLEAN)
 	
     BEGIN
     start transaction;
+	SET result = (FALSE);
          IF NOT EXISTS ( SELECT EMAIL
 			           FROM UTENTE
 				       WHERE EMAIL = Email)
@@ -284,6 +287,7 @@ CREATE PROCEDURE RegistrazioneAziendale (IN Email varchar(30), IN pasw varchar(3
             THEN
         
 				INSERT INTO UTENTE_AZIENDALE  (EMAILA, PW, NOME, COGNOME, DATANASCITA, LUOGO, NOMEAZIENDA) VALUES (Email, pasw, nome, cognome, datanascita, luogo, nomeazienda);
+				SET result = (TRUE);
 				commit work;
         
 			ELSE
@@ -304,11 +308,11 @@ DELIMITER ;
 DELIMITER |
 
 CREATE PROCEDURE Prenotazione ( IN Note varchar(300), IN Auto varchar(10),
-                                IN Utente varchar(30), IN Partenza varchar(30), IN Arrivo varchar(30))
+                                IN Utente varchar(30), IN Partenza varchar(30), IN Arrivo varchar(30),OUT result BOOLEAN)
                                 
 	BEGIN
     start transaction;
-    
+    SET result = (FALSE);
 		IF EXISTS (SELECT *
 				   FROM VEICOLI_DISP	 	
 				   WHERE TARGA = Auto)
@@ -332,7 +336,7 @@ CREATE PROCEDURE Prenotazione ( IN Note varchar(300), IN Auto varchar(10),
         
 				INSERT INTO PRENOTAZIONE (NOTE, AUTO, UTENTE, INDIRIZZO_PARTENZA, INDIRIZZO_ARRIVO)
 				VALUES (Note, Auto, Utente, Partenza, Arrivo); 
-			
+			    SET result = (TRUE);
 			commit work;
         
         ELSE
@@ -366,12 +370,12 @@ DELIMITER ;
 
 DELIMITER |
 
-CREATE PROCEDURE TerminaPrenotazione (IN Email varchar(30), IN Auto varchar(10))
+CREATE PROCEDURE TerminaPrenotazione (IN Email varchar(30), IN Auto varchar(10),OUT result BOOLEAN)
 	
 	BEGIN
     DECLARE TEMPO DATETIME DEFAULT NOW();
     start transaction;
-    
+    SET result = (FALSE);
 		
         IF EXISTS (SELECT *
 				   FROM PRENOTAZIONE
@@ -380,7 +384,7 @@ CREATE PROCEDURE TerminaPrenotazione (IN Email varchar(30), IN Auto varchar(10))
 		THEN UPDATE VEICOLO SET STATO = 'NON IN USO' WHERE TARGA = Auto;
         UPDATE VEICOLO SET AREA_SOSTA = (SELECT INDIRIZZO_ARRIVO FROM PRENOTAZIONE) WHERE TARGA = Auto;
         UPDATE PRENOTAZIONE SET FINE = TEMPO;
-        
+        SET result = (TRUE);
         commit work;
         
         ELSE
@@ -394,11 +398,11 @@ DELIMITER ;
 
 DELIMITER |
 
-CREATE PROCEDURE StoricoPr (IN Email varchar(30))
+CREATE PROCEDURE StoricoPr (IN Email varchar(30),OUT result BOOLEAN)
 
 	BEGIN
     start transaction;
-    
+    SET result = (FALSE);
 		IF EXISTS (SELECT *
 				   FROM UTENTE
 				   WHERE EMAIL = Email)
@@ -406,7 +410,7 @@ CREATE PROCEDURE StoricoPr (IN Email varchar(30))
 		THEN (SELECT * 
              FROM STORICO_PRENOTAZIONI
              WHERE UTENTE = Email);
-             
+        SET result = (TRUE);     
 		commit work;
         
         ELSE
