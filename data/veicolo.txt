@@ -1,0 +1,9 @@
+FN1000	portofino	2	veloce	100	200	enjoy	via pinocchio
+KL2222	aventador	2	velocissima	200	400	enjoy	via cenerentola
+JH3333	modelX	6	elegante	70	140	share&go	via aladin
+UY4444	urus	5	aggressiva	90	180	share&go	via pokahontas
+IT5555	velar	5	spaziosa	50	100	share&go	via tarzan
+QR6666	phantom	4	prestigiosa	180	360	corrente	via aristogatti
+XZ7777	batmobile	4	eccentrica	400	800	corrente	via pinocchio
+TP8888	dodge	4	sportiva	60	120	corrente	via cenerentola
+MN9999	panda	4	economica	10	20	corrente	via tarzan

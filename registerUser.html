@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Registrazione Utente</title>
+
+  </head>
+<body>
+  <div id = "Header" align="center">
+    <hr><h2 class="ex1"> REGISTRAZIONE UTENTI </h2></hr>
+  </div>
+  <div id = "content" class="center">
+    <form action='registerUser.php' method="post">
+    <table align="center">
+      <tr>
+        <td> <b class="ex1"> Email:  </b></td>
+        <td><input type='text' name="email" id="email" placeholder="example@example.com" required><td>
+      </tr>
+      <tr>
+        <td> <b class="ex1"> Password:  </b></td>
+        <td><input type="password" name="password" id="password" placeholder="*********" required><td>
+      </tr>
+      <tr>
+        <td> <b class="ex1"> Nome:  </b></td>
+        <td><input type='Nome' name="nome" id="nome" placeholder="Nome" required><td>
+      </tr>
+	  <tr>
+        <td> <b class="ex1"> Cognome:  </b></td>
+        <td><input type='cognome' name="cognome" id="cognome" placeholder="Cognome" required><td>
+      </tr>
+      <tr>
+        <td> <b class="ex1"> Data di nascita:  </b></td>
+        <td><input type='date' name="datanascita" id="datanascita" onkeydown="return false" required><td>
+      </tr>
+      <tr>
+        <td> <b class="ex1"> Città di residenza:  </b></td>
+        <td><input type='text' name="citta" id="citta" placeholder="Città" required><td>
+     
+      </tr>
+     
+    </table>  
+        <input type='submit' name="signup" value='Sign up'></div>
+    </form>     
+  </div>
+  
+</body>
+</html>

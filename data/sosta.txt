@@ -1,0 +1,6 @@
+via pinocchio	44.499419	11.326775	SI
+via cenerentola	44.490385	11.330260	SI
+via aladin	44.589572	11.055191	NO
+via pokahontas	45.462946	9.192363	SI
+via tarzan	40.421824	15.000394	NO
+via aristogatti	41.901666	12.496978	SI
