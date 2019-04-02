@@ -18,7 +18,8 @@ if(isset($_POST['signup'])){
   $azienda=$_POST['nomeazienda'];
   
   $object = new Business();
-  $res = $object -> RegistrazioneAziendale($email, $password, $nome, $cognome, $dataNascita, $citta, $azienda);
+  $res = $object -> RegistrazioneAziendale($nome, $cognome, $email, $password,  $dataNascita, $citta, $azienda);
+  echo $res;
     if ($res=true) {
       $_SESSION["email"] = $email;
       $_SESSION["password"] = $password;

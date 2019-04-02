@@ -46,7 +46,7 @@ class Business
 
 		try{
 
-			$query_signup = $this -> db -> prepare("CALL RegistrazioneAziendale ('$email','$password', '$nome', '$cognome','$dataNascita','$citta', '$azienda')");
+			$query_signup = $this -> db -> prepare("CALL RegistrazioneAziendale ('$email','$password', '$nome', '$cognome','$dataNascita','$citta', '$azienda',@res)");
 			$query_signup -> execute();
 			$query_signup->closeCursor();
 			$query_select_signup = $this -> db -> prepare("SELECT @res");
