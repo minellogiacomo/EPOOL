@@ -3,13 +3,13 @@
 
 include_once('connection.php');
 
-if(!isset($_SESSION)){ 
-    session_start(); 
+if(!isset($_SESSION)){
+    session_start();
 }
 
 
 /**
-* 
+*
 */
 class User
 {
@@ -20,12 +20,28 @@ class User
 		$this -> db = $this -> db -> dbConnect();
 
 	}
-	
 
-	public function Login($email, $password){
-	
+  public function getBookingList($email){
+
+		try{
+      $sql = "SELECT *
+               FROM STORICO_PRENOTAZIONI
+               WHERE UTENTE = '$email'";
+      $res= $this-> db ->query($sql);
+      return $res;
+
+
+
+		}catch(PDOException $e) {
+    		return("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
+
+  		}
+	}
+
+  public function Login($email, $password){
+
 		try {
-    		
+
 			$query = $this -> db -> prepare("CALL Login('$email','$password',@res)");
 			$query -> execute();
 			$query2 = $this -> db -> prepare("SELECT @res");
@@ -45,7 +61,7 @@ class User
 
 
 	public function SignupCommercial($nickname, $email, $password, $nascita, $cittaResidenza, $regione, $stato, $tipo){
-		
+
 		try{
 			$cittaResidenza = addslashes($cittaResidenza);
 			$regione = addslashes($regione);
@@ -77,7 +93,7 @@ class User
 	}
 
 	public function registerUser($nome, $cognome, $email, $password, $dataNascita, $citta){
-		
+
 
 		try{
 
@@ -90,10 +106,10 @@ class User
 			$result = $query_select_signup ->fetch();
 			$query_select_signup->closeCursor();
 			// $this -> db ->closeCursor();
-            
+
 			//TO DO: ADD MONGODB LOG query+log
-			
-			//$risultato = $result['@res']; 
+
+			//$risultato = $result['@res'];
 
 		}catch(PDOException $e) {
     		return ("[ERRORE] SignUp non riuscito. Errore: ".$e->getMessage());
@@ -104,9 +120,9 @@ class User
 	}
 
 	public function getInfoUser($nickname,$password){
-		
+
 		try {
-     		
+
      		$sql='SELECT Nickname,Password,CittaResidenza,Tipo,Email,dataNascita,Regione,Citta.Stato FROM Utente,Citta  WHERE (Utente.CittaResidenza = Citta.Nome ) AND (Nickname="'.$nickname.'") AND (Password="'.$password.'")';
      		$res=$this -> db ->query($sql);
      		$row=$res->fetch();
@@ -116,9 +132,9 @@ class User
     		echo("[ERRORE] Query SQL (getInfoUser) non riuscita. Errore: ".$e->getMessage());
     		// exit();
   		}
-		
-   		
-   		
+
+
+
    		$_SESSION["uname"] = $row["Nickname"];
    		$_SESSION["psswd"] = $row["Password"];
    		$_SESSION["citta"] = $row["CittaResidenza"];
@@ -135,14 +151,14 @@ class User
    		// 		" CITTA : ".$_SESSION["citta"]." = ".$row["CittaResidenza"]." <br>".
    		// 		" TIPO : ".$_SESSION["tipo"]." = ".$row["Tipo"]." <br>".
    		// 		" EMAIL : ".$_SESSION["email"]." = ".$row["Email"]." <br>");
-    	
+
     	// print_r($_SESSION);
 	}
 
 	public function deleteUtente($nicknameUtente, $password){
-		
+
 		try{
-		
+
 		$query = $this -> db -> prepare("CALL DeleteUtente('$nicknameUtente','$password',@res)");
 		$query->execute();
 		$query->closeCursor();
@@ -157,7 +173,7 @@ class User
 		}
   		catch(PDOException $e) {
     		echo("[ERRORE] Delete User non riuscita. Errore: ".$e->getMessage());
-    		
+
   		}
 
 		if ($risultato == 1){
@@ -174,7 +190,7 @@ class User
 			$titolo = addslashes($titolo);
 			$descrizione = addslashes($descrizione);
 			$query = $this -> db -> prepare("CALL SendMessage('$titolo','$descrizione','$nicknameMittente','$nicknameDestinatario',@res)");
-		
+
 			$query->execute();
 			$query->closeCursor();
 
@@ -184,22 +200,22 @@ class User
 			$query2->closeCursor();
 
 			$risultato = $result['@res'];
-		
+
 
 		}
   		catch(PDOException $e) {
     		echo("[ERRORE] SendMessage non riuscita. Errore: ".$e->getMessage());
-    		
+
   		}
 
 		if ($risultato != 1){
 			echo "[ERRORE] SendMessage non è stata eseguita con successo ";
 		}
-		
+
 	}
 
 	public function insertCommercialAttractiveness($nomeAttrattiva,$nomeCitta,$Indirizzo,$lng,$lat,$nickname,$password,$foto,$telefono,$sitoweb){
-		
+
 
 
 		try{
@@ -219,14 +235,14 @@ class User
         	$arr[$i][] = $row['NomeCitta'];
         	$i++;
   		}
-  		
+
   		//se non ho trovato attrattive con lo stesso nome della stessa città
   		if (count($arr) == 0) {
 
   			$cittaInsert = $_SESSION["citta"];
   			$regioneInsert = $_SESSION["regione"];
   			$statoInsert = $_SESSION["stato"];
-  			
+
   			try{
 	  			$query_insertCitta = $this -> db -> prepare("CALL InsertCitta('$cittaInsert','$regioneInsert','$statoInsert',@res)");
 				$query_insertCitta -> execute();
@@ -246,7 +262,7 @@ class User
     			// exit();
   			}
 
-  			
+
   				$nicknameSign = $_SESSION["uname"];
 				$emailSign = $_SESSION["email"];
 				$passwordSign = $_SESSION["psswd"];
@@ -266,13 +282,13 @@ class User
 				$query_select_signup->closeCursor();
 
 				$risultato = $result['@res'];
-				
+
 				}catch(PDOException $e) {
 	    			return("[ERRORE] Signup non riuscita. Errore: ".$e->getMessage());
 	    			// exit();
 	  			}
-  			
-			
+
+
 			//Se signup è andato a buon fine
 			if($risultato == 1){
 				//Inserisco l'attività commerciale
@@ -286,7 +302,7 @@ class User
 				$result = $query2 -> fetch();
 				$query2->closeCursor();
 				$risultato = $result['@res'];
-				
+
 				}catch(PDOException $e) {
 	    			return("[ERRORE] InsertAttivitaCommerciale non riuscita. Errore: ".$e->getMessage());
 	    			// exit();
@@ -323,7 +339,7 @@ class User
 	}
 
 	public function getListaMessaggiPubblici(){
-		
+
 		try{
 			$sql = "SELECT * FROM Messaggio WHERE Tipo = 'Pubblico'";
 			$res=$this -> db ->query($sql);
@@ -334,13 +350,13 @@ class User
   		// $arr = array();
   		// $i = 0;
   		// foreach ($res as $row) {
-  
+
 
   		return $res;
 	}
 
 	public function getListaMessaggi($nickname,$receiver){
-		
+
 		try{
 			$sql = ("SELECT Titolo,Descrizione,NicknameMittente from Messaggio where (NicknameMittente = '".$nickname."' AND NicknameDestinatario = '".$receiver."') OR (NicknameMittente ='".$receiver."' AND NicknameDestinatario = '".$nickname."')");
 			$res = $this -> db ->query($sql);
