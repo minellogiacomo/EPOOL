@@ -41,43 +41,35 @@ class Business
 
 
 	
-	public function registerBusiness($nome, $cognome, $email, $password, $dataNascita, $citta){
+	public function RegistrazioneAziendale($nome, $cognome, $email, $password, $dataNascita, $citta, $azienda){
 		
 
 		try{
 
-			$query_signup = $this -> db -> prepare("CALL RegistrazioneUtente ('$email','$password', '$nome', '$cognome','$dataNascita','$citta')");
+			$query_signup = $this -> db -> prepare("CALL RegistrazioneAziendale ('$email','$password', '$nome', '$cognome','$dataNascita','$citta', '$azienda')");
 			$query_signup -> execute();
 			$query_signup->closeCursor();
-
 			$query_select_signup = $this -> db -> prepare("SELECT @res");
 			$query_select_signup -> execute();
 			$result = $query_select_signup ->fetch();
 			$query_select_signup->closeCursor();
-			// $this -> db ->closeCursor();
             
 			//TO DO: ADD MONGODB LOG query+log
 			
-			//$risultato = $result['@res']; 
+			$risultato = $result['@res']; 
 
 		}catch(PDOException $e) {
     		return ("[ERRORE] SignUp non riuscito. Errore: ".$e->getMessage());
     		// exit();
   		}
 
-		//return $risultato;
+		return $risultato;
 	}
 
 	
 	}
 
 	
-
-
-
-
-
-}
 
 
 

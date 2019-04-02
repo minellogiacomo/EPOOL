@@ -15,8 +15,8 @@ CREATE PROCEDURE RegistrazioneAziendale (IN Email varchar(30), IN pasw varchar(3
 							WHERE NOMEAZIENDA = nomeazienda)
 			
             THEN
-        
-				INSERT INTO UTENTE_AZIENDALE  (EMAILA, PW, NOME, COGNOME, DATANASCITA, LUOGO, NOMEAZIENDA) VALUES (Email, pasw, nome, cognome, datanascita, luogo, nomeazienda);
+                INSERT INTO UTENTE  (EMAILA, PW, NOME, COGNOME, DATANASCITA, LUOGO) VALUES (Email, pasw, nome, cognome, datanascita, luogo);
+				INSERT INTO UTENTE_AZIENDALE  (EMAILA,NOMEAZIENDA) VALUES (Email, nomeazienda);
 				SET result = (TRUE);
 				commit work;
         

@@ -43,39 +43,6 @@ class User
 			return $risultato;
 	}
 
-
-	public function SignupCommercial($nickname, $email, $password, $nascita, $cittaResidenza, $regione, $stato, $tipo){
-		
-		try{
-			$cittaResidenza = addslashes($cittaResidenza);
-			$regione = addslashes($regione);
-			$stato = addslashes($stato);
-			$sql = "SELECT * FROM Utente WHERE Nickname = '$nickname'";
-			$res=$this -> db ->query($sql);
-
-		}catch(PDOException $e) {
-    		return ("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
-    		// exit();
-  		}
-  		$arr = array();
-  		$i = 0;
-  		foreach ($res as $row) {
-        	$arr[$i][] = $row['Nickname'];
-        	$arr[$i][] = $row['Email'];
-        	$arr[$i][] = $row['Password'];
-        	$arr[$i][] = $row['dataNascita'];
-        	$arr[$i][] = $row['CittaResidenza'];
-        	$arr[$i][] = $row['Tipo'];
-        	$i++;
-  		}
-
-  		if (count($arr) == 0) {
-  			return 1;
-  		}else{
-  			return 0;
-  		}
-	}
-
 	public function registerUser($nome, $cognome, $email, $password, $dataNascita, $citta){
 		
 
