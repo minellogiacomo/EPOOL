@@ -10,7 +10,7 @@ if(isset($_POST['submit'])){
 	$password = $_POST['password'];
 	$object = new User();
 	$risultato = $object ->Login($email, $password);
-	if (true) {
+	if ($risultato==true) {
 		$_SESSION["email"] = $email;
 		$_SESSION["password"] = $password;
 		//$object -> getInfoUser($nickname, $password);

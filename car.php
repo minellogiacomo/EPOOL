@@ -33,14 +33,14 @@ class car
             
 			//TO DO: ADD MONGODB LOG query+log
 			
-			//$risultato = $result['@res']; 
+			$risultato = $result['@res']; 
 
 		}catch(PDOException $e) {
     		return ("[ERRORE] RegistrazioneVeicolo non riuscito. Errore: ".$e->getMessage());
     		// exit();
   		}
 
-		//return $risultato;
+		return $risultato;
 	}
 
 	
