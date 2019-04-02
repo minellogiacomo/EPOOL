@@ -71,7 +71,7 @@ CREATE TABLE PUBBLICA (
 CREATE TABLE PRIVATA (
 	
     NOME VARCHAR(30) PRIMARY KEY REFERENCES SOCIETA(NOME)
-    /*BROCHURE VARCHAR(30) /*??????? PDF NON SO COME INSERIRLO VEDREMO POI*/
+    /*BROCHURE VARCHAR(30) /*TO DO: save pdf on server and save the pdf path in sql*/
     
     ) ENGINE=INNODB;
     
@@ -212,13 +212,7 @@ LOAD DATA INFILE "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/veicolo.txt" INT
 
 UPDATE VEICOLO set AREA_SOSTA = REPLACE(AREA_SOSTA,"\r","");
 
-/*PROCEDURES
- REGISTRARSI SU UNA PIATTAFORMA*/
- 
-/*inizio procedures */
-/* REGISTRAZIONE*/
 
-/*procedure di stampa */
 DELIMITER |
 
 CREATE PROCEDURE printf(mytext TEXT)
