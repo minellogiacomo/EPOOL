@@ -9,7 +9,18 @@
 	  }
   
 ?>
+<?php include_once('user.php');?>
 <?php include('header.html');?>
 <?php include('menuUser.html');?>
+<?php
+$object = new User();
+$res = $object -> getInfoUtente($_SESSION["email"]);
+while ($row=$res->fetch(PDO::FETCH_ASSOC)) {
+    echo '<div>';
+    echo $row['EMAIL'];
+    echo '</div>';
+}
+
+?>
 <?php include('profilo.html');?>
 <?php include('footer.html');?>

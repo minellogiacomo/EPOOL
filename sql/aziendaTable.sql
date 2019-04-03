@@ -1,3 +1,7 @@
+/*
+  Create table AZIENDA
+*/
+
 CREATE TABLE AZIENDA (
 	
 	NOME VARCHAR(30) PRIMARY KEY,

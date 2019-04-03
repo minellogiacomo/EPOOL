@@ -39,7 +39,18 @@ class Business
 			return $risultato;
 	}
 
+    public function getInfoAziende(){
 
+        try {
+            $sql='SELECT *  FROM AZIENDA';
+            $res=$this -> db ->query($sql);
+            return $res;
+        }
+        catch(PDOException $e) {
+            echo("[ERRORE] Query SQL (getInfoUser) non riuscita. Errore: ".$e->getMessage());
+            // exit();
+        }
+    }
 	
 	public function RegistrazioneAziendale($nome, $cognome, $email, $password, $dataNascita, $citta, $azienda){
 		
