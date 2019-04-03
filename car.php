@@ -15,7 +15,29 @@ class car
 		$this -> db = $this -> db -> dbConnect();
 
 	}
-	
+
+    public function insertSegnalazione($Email, $SocietaAutomobile, $DataSegnalazione,$TitoloSegnalazione, $TestoSegnalazione,$Automobile){
+        try{
+            $query = $this -> db -> prepare("CALL InserisciSegnalazione('$Email', '$SocietaAutomobile', '$DataSegnalazione ', '$TitoloSegnalazione ', '$TestoSegnalazione ', '$Automobile' )");
+            $query -> execute();
+            $query -> closeCursor();
+
+            $query_select = $this -> db -> prepare("SELECT @res");
+            $query_select -> execute();
+            $result = $query_select ->fetch();
+            $query_select->closeCursor();
+
+            //TO DO: ADD MONGODB LOG query+log
+
+            $risultato = $result['@res'];
+
+        }catch(PDOException $e) {
+            return ("[ERRORE] op non riuscito. Errore: ".$e->getMessage());
+            // exit();
+        }
+        return $risultato;
+    }
+
 
 	public function registerVeicolo(){
 		
@@ -56,6 +78,18 @@ class car
         }
     }
 
+    public function getVeicoli(){
+
+        try {
+            $sql='SELECT *  FROM VEICOLO';
+            $res=$this -> db ->query($sql);
+            return $res;
+        }
+        catch(PDOException $e) {
+            echo("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
+            // exit();
+        }
+    }
 
     public function deleteVeicolo(){
 		
