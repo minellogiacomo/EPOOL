@@ -17,7 +17,7 @@ if(isset($_POST['signup'])){
 
   $object = new User();
   $res = $object -> registerUser($nome, $cognome, $email,  $password, $dataNascita, $citta);
-    if ($res=true) {
+    if ($res==true) {
       $_SESSION["email"] = $email;
       $_SESSION["password"] = $password;
 	  header("Location: login.php");
