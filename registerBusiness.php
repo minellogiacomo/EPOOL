@@ -33,4 +33,6 @@ if(isset($_POST['signup'])){
 }
 
 ?>
+<?php include 'header.html';?>
 <?php include 'registerBusiness.html';?>
+<?php include 'footer.html';?>
