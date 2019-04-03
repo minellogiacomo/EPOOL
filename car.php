@@ -18,7 +18,7 @@ class car
 
     public function insertSegnalazione($Email, $SocietaAutomobile, $DataSegnalazione,$TitoloSegnalazione, $TestoSegnalazione,$Automobile){
         try{
-            $query = $this -> db -> prepare("CALL InserisciSegnalazione('$Email', '$SocietaAutomobile', '$DataSegnalazione ', '$TitoloSegnalazione ', '$TestoSegnalazione ', '$Automobile' )");
+            $query = $this -> db -> prepare("CALL InserisciSegnalazione('$Email', '$SocietaAutomobile', '$DataSegnalazione ', '$TitoloSegnalazione ', '$TestoSegnalazione ', '$Automobile',@res )");
             $query -> execute();
             $query -> closeCursor();
 
@@ -30,7 +30,7 @@ class car
             //TO DO: ADD MONGODB LOG query+log
 
             $risultato = $result['@res'];
-
+            echo $risultato;
         }catch(PDOException $e) {
             return ("[ERRORE] op non riuscito. Errore: ".$e->getMessage());
             // exit();
