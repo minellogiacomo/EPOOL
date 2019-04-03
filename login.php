@@ -1,10 +1,11 @@
 <?php 
 include_once('user.php');
- if(!isset($_SESSION)) 
+
+if(!isset($_SESSION))
     { 
         session_start();
     } 
-	
+
 if(isset($_POST['submit'])){
 	$email = $_POST['email'];
 	$password = $_POST['password'];
