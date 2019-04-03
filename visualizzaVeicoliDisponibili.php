@@ -9,7 +9,18 @@
 	  }
   
 ?>
+<?php include_once('car.php');?>
 <?php include('header.html');?>
 <?php include('menuUser.html');?>
+<?php
+$object = new Car();
+$res = $object -> getVeicoliDisponibili();
+while ($row=$res->fetch(PDO::FETCH_ASSOC)) {
+    echo '<div>';
+    echo $row['TARGA'];
+    echo '</div>';
+}
+
+?>
 <?php include('visualizzaVeicoliDisponibili.html');?>
 <?php include('footer.html');?>

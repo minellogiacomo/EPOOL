@@ -43,9 +43,21 @@ class car
 		return $risultato;
 	}
 
-	
+    public function getVeicoliDisponibili(){
 
-	public function deleteVeicolo(){
+        try {
+            $sql='SELECT *  FROM VEICOLI_DISPONIBILI';
+            $res=$this -> db ->query($sql);
+            return $res;
+        }
+        catch(PDOException $e) {
+            echo("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
+            // exit();
+        }
+    }
+
+
+    public function deleteVeicolo(){
 		
 		try{
 		
