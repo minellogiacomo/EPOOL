@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <?php include 'header.html';?>
 <?php include 'index.html';?>
 <?php include 'login.php';?>

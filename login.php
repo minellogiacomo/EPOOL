@@ -1,4 +1,5 @@
-<?php 
+<?php ob_start(); ?>
+<?php
 include_once('user.php');
 
 if(!isset($_SESSION))

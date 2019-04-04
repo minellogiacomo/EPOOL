@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <?php
   if(!isset($_SESSION))
     {
@@ -29,8 +30,10 @@ if(isset($_POST['submit1'])){
     if ($res==true) {
         echo "<script type='text/javascript'>alert('Operazione eseguita');</script>";
         header("Location: homeUser.php");
+       // echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
     }else{
         echo "<script type='text/javascript'>alert('Errorrrate');</script>";
+       //echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
         header("Location: homeUser.php");
     }
 }
