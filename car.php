@@ -38,6 +38,27 @@ class car
         return $risultato;
     }
 
+    public function insertPrenotazione($DataInizio, $DataFine,  $Note,  $Automobile, $Emailt, $IndirizzoPartenza, $IndirizzoArrivo){
+        try{
+            $query = $this -> db -> prepare("CALL InserisciPrenotazione('$DataInizio', '$DataFine',  '$Note', ' $Automobile',' $Emailt', '$IndirizzoPartenza', '$IndirizzoArrivo', @res )");
+            $query -> execute();
+            $query -> closeCursor();
+
+            $query_select = $this -> db -> prepare("SELECT @res");
+            $query_select -> execute();
+            $result = $query_select ->fetch();
+            $query_select->closeCursor();
+
+            //TO DO: ADD MONGODB LOG query+log
+
+            $risultato = $result['@res'];
+            echo $risultato;
+        }catch(PDOException $e) {
+            return ("[ERRORE] op non riuscito. Errore: ".$e->getMessage());
+            // exit();
+        }
+        return $risultato;
+    }
 
 	public function registerVeicolo(){
 		

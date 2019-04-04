@@ -1,0 +1,37 @@
+<div id = "Header">
+    <hr>
+    <h2 class="ex1"> prenotazione </h2>
+</div>
+
+<div class="center" id = content>
+    <form action='inserisciPrenotazione.php' method="post" >
+        <table>
+            <tr>
+                <td> <b class="ex1"> DataInizio:   </b></td>
+                <td><input type="date" name="DataInizio" required /></td>
+            </tr>
+            <tr>
+                <td> <b class="ex1"> DataFine:   </b></td>
+                <td><input type="date" name="DataFine" required /></td>
+            </tr>
+            <tr>
+                <td> <b class="ex1"> Note:   </b></td>
+                <td><input type="text" name="Note" placeholder="Note" required /></td>
+            </tr>
+            <tr>
+                <td> <b class="ex1"> Auto:   </b></td>
+                <td><input type="text" name="Auto" placeholder="Auto" required /></td>
+            </tr>
+
+            <tr>
+                <td> <b class="ex1"> IndirizzoPartenza:   </b></td>
+                <td><input type="text" name="IndirizzoPartenza" placeholder="IndirizzoPartenza" required /></td>
+            </tr>
+            <tr>
+                <td> <b class="ex1"> IndirizzoArrivo:   </b></td>
+                <td><input type="text" name="IndirizzoArrivo" placeholder="IndirizzoArrivo" required /></td>
+            </tr>
+        </table>
+        <input type="submit" name="submit1" value="submit1" />
+    </form>
+</div>
