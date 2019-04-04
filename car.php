@@ -18,7 +18,7 @@ class car
 
     public function insertSegnalazione($Email, $SocietaAutomobile, $DataSegnalazione,$TitoloSegnalazione, $TestoSegnalazione,$Automobile){
         try{
-            $query = $this -> db -> prepare("CALL InserisciSegnalazione('$Email', '$SocietaAutomobile', '$DataSegnalazione ', '$TitoloSegnalazione ', '$TestoSegnalazione ', '$Automobile',@res )");
+            $query = $this -> db -> prepare("CALL InserisciSegnalazione('$Email', '$SocietaAutomobile', '$DataSegnalazione ', '$TitoloSegnalazione ', '$TestoSegnalazione ', '$Automobile',@res)");
             $query -> execute();
             $query -> closeCursor();
 
@@ -40,7 +40,7 @@ class car
 
     public function insertPrenotazione($DataInizio, $DataFine,  $Note,  $Automobile, $Emailt, $IndirizzoPartenza, $IndirizzoArrivo){
         try{
-            $query = $this -> db -> prepare("CALL InserisciPrenotazione('$DataInizio', '$DataFine',  '$Note', ' $Automobile',' $Emailt', '$IndirizzoPartenza', '$IndirizzoArrivo', @res )");
+            $query = $this -> db -> prepare("CALL prenotazione( '$Note', ' $Automobile',' $Emailt', '$IndirizzoPartenza', '$IndirizzoArrivo',@res)");
             $query -> execute();
             $query -> closeCursor();
 
