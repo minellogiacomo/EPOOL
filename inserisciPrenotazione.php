@@ -21,13 +21,13 @@ while ($row=$res->fetch(PDO::FETCH_ASSOC)) {
 }
 
 if(isset($_POST['submit1'])){
-    $DataInizio=$_POST['DataInizio'];
-    $DataFine=$_POST['DataFine'];
     $Note=$_POST['Note'];
     $Automobile=$_POST['Auto'];
     $IndirizzoPartenza=$_POST['IndirizzoPartenza'];
     $IndirizzoArrivo=$_POST['IndirizzoArrivo'];
-    $res = $object -> insertPrenotazione($DataInizio, $DataFine,  $Note,  $Automobile, $_SESSION['email'], $IndirizzoPartenza, $IndirizzoArrivo);
+
+    $objectc = new Car();
+    $res = $objectc -> insertPrenotazione( $Note,  $Automobile, $_SESSION['email'], $IndirizzoPartenza, $IndirizzoArrivo);
     if ($res==true) {
         echo "<script type='text/javascript'>alert('Operazione eseguita');</script>";
         header("Location: homeUser.php");

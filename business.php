@@ -53,10 +53,7 @@ class Business
     }
 	
 	public function RegistrazioneAziendale($nome, $cognome, $email, $password, $dataNascita, $citta, $azienda){
-		
-
 		try{
-
 			$query_signup = $this -> db -> prepare("CALL RegistrazioneAziendale ('$email','$password', '$nome', '$cognome','$dataNascita','$citta', '$azienda',@res)");
 			$query_signup -> execute();
 			$query_signup->closeCursor();
@@ -64,18 +61,32 @@ class Business
 			$query_select_signup -> execute();
 			$result = $query_select_signup ->fetch();
 			$query_select_signup->closeCursor();
-            
 			//TO DO: ADD MONGODB LOG query+log
-			
-			$risultato = $result['@res']; 
-
+			$risultato = $result['@res'];
 		}catch(PDOException $e) {
     		return ("[ERRORE] SignUp non riuscito. Errore: ".$e->getMessage());
     		// exit();
   		}
-
 		return $risultato;
 	}
+
+    public function insertValutazione($email,$testo,$voto,$utente){
+        try{
+            $query= $this -> db -> prepare("CALL InserisciValutazione ('$email','$testo', '$voto', '$utente',@res)");
+            $query -> execute();
+            $query->closeCursor();
+            $query_select= $this -> db -> prepare("SELECT @res");
+            $query_select-> execute();
+            $result = $query_select ->fetch();
+            $query_select->closeCursor();
+            //TO DO: ADD MONGODB LOG query+log
+            $risultato = $result['@res'];
+        }catch(PDOException $e) {
+            return ("[ERRORE]  non riuscito. Errore: ".$e->getMessage());
+            // exit();
+        }
+        return $risultato;
+    }
 
 	
 	}

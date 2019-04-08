@@ -11,5 +11,8 @@
 ?>
 <?php include('header.html');?>
 <?php include('menuUser.html');?>
+<?php
+
+?>
 <?php include('visualizzaPrenotazioni.html');?>
 <?php include('footer.html');?>

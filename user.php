@@ -17,6 +17,18 @@ class User
 
     }
 
+    public function visualizzaFoto($email){
+        try {
+            $sql='SELECT PATHFOTO FROM FOTO WHERE FOTO.EMAIL_UTENTE="'.$email.'";';
+            $res=$this -> db ->query($sql);
+            return $res;
+        }
+        catch(PDOException $e) {
+            return("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
+            // exit();
+        }
+    }
+
     public function Login($email, $password){
 
         try {
@@ -128,89 +140,23 @@ class User
         }
     }
 
-    public function sendMessage($titolo, $descrizione, $nicknameMittente, $nicknameDestinatario){
-        try{
-            $titolo = addslashes($titolo);
-            $descrizione = addslashes($descrizione);
-            $query = $this -> db -> prepare("CALL SendMessage('$titolo','$descrizione','$nicknameMittente','$nicknameDestinatario',@res)");
-
-            $query->execute();
-            $query->closeCursor();
-
-            $query2 = $this -> db ->prepare("SELECT @res");
-            $query2->execute();
-            $result = $query2->fetch();
+    public function insertFoto($email, $path){
+        try {
+            $query = $this -> db -> prepare("CALL InsertFoto('$email','$path',@res)");
+            $query -> execute();
+            $query2 = $this -> db -> prepare("SELECT @res");
+            $query2 -> execute();
+            $result = $query2 -> fetch();
             $query2->closeCursor();
-
             $risultato = $result['@res'];
-
-
+        } catch (PDOException $e) {
+            return "[Errore] Login non andato a buon fine ".$e->getMessage();
         }
-        catch(PDOException $e) {
-            echo("[ERRORE] SendMessage non riuscita. Errore: ".$e->getMessage());
-
-        }
-
-        if ($risultato != 1){
-            echo "[ERRORE] SendMessage non è stata eseguita con successo ";
-        }
-
+        return $risultato;
     }
 
-    public function displayListaUtentiIndex(){
-        try{
-            $sql = "SELECT * FROM Utente WHERE Stato = 1";
-            $res=$this -> db ->query($sql);
-        }catch(PDOException $e) {
-            return("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
-            // exit();
-        }
-        $arr = array();
-        $i = 0;
-        foreach ($res as $row) {
-            $arr[$i][] = $row['Nickname'];
-            $arr[$i][] = $row['Email'];
-            //$arr[$i][] = $row['Password'];
-            $arr[$i][] = $row['dataNascita'];
-            $arr[$i][] = $row['CittaResidenza'];
-            $arr[$i][] = $row['Tipo'];
-            $i++;
-        }
 
-        return $arr;
-    }
-
-    public function getListaMessaggiPubblici(){
-
-        try{
-            $sql = "SELECT * FROM Messaggio WHERE Tipo = 'Pubblico'";
-            $res=$this -> db ->query($sql);
-        }catch(PDOException $e) {
-            return("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
-            // exit();
-        }
-        // $arr = array();
-        // $i = 0;
-        // foreach ($res as $row) {
-
-
-        return $res;
-    }
-
-    public function getListaMessaggi($nickname,$receiver){
-
-        try{
-            $sql = ("SELECT Titolo,Descrizione,NicknameMittente from Messaggio where (NicknameMittente = '".$nickname."' AND NicknameDestinatario = '".$receiver."') OR (NicknameMittente ='".$receiver."' AND NicknameDestinatario = '".$nickname."')");
-            $res = $this -> db ->query($sql);
-        }catch(PDOException $e) {
-            return("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
-        }
-
-        return $res;
-    }
 
 }
-
-
 
 ?>

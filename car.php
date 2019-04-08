@@ -38,9 +38,9 @@ class car
         return $risultato;
     }
 
-    public function insertPrenotazione($DataInizio, $DataFine,  $Note,  $Automobile, $Emailt, $IndirizzoPartenza, $IndirizzoArrivo){
+    public function insertPrenotazione( $Note,  $Automobile, $Emailt, $IndirizzoPartenza, $IndirizzoArrivo){
         try{
-            $query = $this -> db -> prepare("CALL prenotazione( '$Note', ' $Automobile',' $Emailt', '$IndirizzoPartenza', '$IndirizzoArrivo',@res)");
+            $query = $this -> db -> prepare("CALL Prenotazione( '$Note', ' $Automobile',' $Emailt', '$IndirizzoPartenza', '$IndirizzoArrivo',@res)");
             $query -> execute();
             $query -> closeCursor();
 

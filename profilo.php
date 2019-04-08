@@ -5,7 +5,7 @@
     } ;
 	
   if (!isset($_SESSION["email"]) or !isset($_SESSION["password"])){
-	  header("location: login.php");
+	  header("location: index.php");
 	  }
   
 ?>
@@ -23,4 +23,6 @@ while ($row=$res->fetch(PDO::FETCH_ASSOC)) {
 
 ?>
 <?php include('profilo.html');?>
+<?php include('inserisciFoto.php');?>
+<?php include('visualizzaFoto.php');?>
 <?php include('footer.html');?>

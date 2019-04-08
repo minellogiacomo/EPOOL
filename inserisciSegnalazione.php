@@ -5,7 +5,7 @@
         session_start();
     } ;
   if (!isset($_SESSION["email"]) or !isset($_SESSION["password"])){
-	  header("location: login.php");
+	  header("location: index.php");
 	  }
 ?>
 <?php include_once('car.php');?>

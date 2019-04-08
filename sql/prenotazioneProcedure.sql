@@ -7,7 +7,7 @@ CREATE PROCEDURE Prenotazione ( IN Note varchar(300), IN Auto varchar(10),
     start transaction;
     SET result = (FALSE);
 		IF EXISTS (SELECT *
-				   FROM VEICOLI_DISP	 	
+				   FROM VEICOLI_DISPONIBILI
 				   WHERE TARGA = Auto)
                    
 		    THEN IF EXISTS (SELECT *
@@ -27,11 +27,11 @@ CREATE PROCEDURE Prenotazione ( IN Note varchar(300), IN Auto varchar(10),
                             WHERE (INDIRIZZO = Arrivo))
 			    THEN
         
-				INSERT INTO PRENOTAZIONE (NOTE, AUTO, UTENTE, INDIRIZZO_PARTENZA, INDIRIZZO_ARRIVO)
-				VALUES (Note, Auto, Utente, Partenza, Arrivo); 
-			    SET result = (TRUE);
+				INSERT INTO PRENOTAZIONE (INIZIO, FINE, NOTE, AUTO, UTENTE, INDIRIZZO_PARTENZA, INDIRIZZO_ARRIVO)
+				VALUES (CURRENT_TIMESTAMP, NULL, Note, Auto, Utente, Partenza, Arrivo);
+
 			commit work;
-        
+				SET result = (TRUE);
         ELSE
 				CALL printf ('[ERRORE] LA DESTINAZIONE NON ESISTE');
 				rollback;

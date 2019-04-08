@@ -1,0 +1,25 @@
+<div id = "Header">
+    <hr>
+    <h2 class="ex1"> Valutazione </h2>
+</div>
+
+<div class="center" id = content>
+    <form action='inserireValutazione.php' method="post" >
+        <table>
+            <tr>
+                <td> <b class="ex1"> Testo:   </b></td>
+                <td><input type="text" name="Testo" placeholder="Testo" required /></td>
+            </tr>
+            <tr>
+                <td> <b class="ex1"> Voto:   </b></td>
+                <td><input type="number" name="Voto" required min="1" max="10" /></td>
+            </tr>
+            <tr>
+                <td> <b class="ex1"> Utente:   </b></td>
+                <td><input type="text" name="Utente" placeholder="Utente" required /></td>
+            </tr>
+
+        </table>
+        <input type="submit" name="submit" value="Valuta" />
+    </form>
+</div>
