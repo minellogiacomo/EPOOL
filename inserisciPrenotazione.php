@@ -27,7 +27,7 @@ if(isset($_POST['submit1'])){
     $IndirizzoArrivo=$_POST['IndirizzoArrivo'];
 
     $objectc = new Car();
-    $res = $objectc -> insertPrenotazione( $Note,  $Automobile, $_SESSION['email'], $IndirizzoPartenza, $IndirizzoArrivo);
+    $res = $objectc -> insertPrenotazione( $Note,  $Automobile, $_SESSION["email"], $IndirizzoPartenza, $IndirizzoArrivo);
     if ($res==true) {
         echo "<script type='text/javascript'>alert('Operazione eseguita');</script>";
         header("Location: homeUser.php");

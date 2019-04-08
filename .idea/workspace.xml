@@ -2,38 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a714aa5-6a1b-40d7-b831-12b22efce042" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/User.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inserisciFoto.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql/getFotoProcedure.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql/inserisciValutazioneProcedure.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql/insertFotoProcedure.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stati.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/statistiche.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/statistiche.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualizzaFoto.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualizzaFoto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/business.php" beforeDir="false" afterPath="$PROJECT_DIR$/business.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/car.php" beforeDir="false" afterPath="$PROJECT_DIR$/car.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homeBusiness.php" beforeDir="false" afterPath="$PROJECT_DIR$/homeBusiness.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homeUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/homeUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inserireValutazione.html" beforeDir="false" afterPath="$PROJECT_DIR$/inserireValutazione.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inserireValutazione.php" beforeDir="false" afterPath="$PROJECT_DIR$/inserireValutazione.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inserisciPrenotazione.html" beforeDir="false" afterPath="$PROJECT_DIR$/inserisciPrenotazione.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inserisciPrenotazione.php" beforeDir="false" afterPath="$PROJECT_DIR$/inserisciPrenotazione.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inserisciSegnalazione.php" beforeDir="false" afterPath="$PROJECT_DIR$/inserisciSegnalazione.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loginAziendale.html" beforeDir="false" afterPath="$PROJECT_DIR$/loginAziendale.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/menuUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/menuUser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profilo.php" beforeDir="false" afterPath="$PROJECT_DIR$/profilo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/fotoTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/fotoTable.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sql/prenotazioneProcedure.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/prenotazioneProcedure.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/valutazioneTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/valutazioneTable.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisctiche.php" beforeDir="false" afterPath="$PROJECT_DIR$/InserisciFoto.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualizzaPrenotazioni.php" beforeDir="false" afterPath="$PROJECT_DIR$/visualizzaPrenotazioni.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualizzaUtenti.php" beforeDir="false" afterPath="$PROJECT_DIR$/visualizzaUtenti.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,38 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/inserisciPrenotazione.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/inserireValutazione.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/inserisciPrenotazione.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="9" column="54" lean-forward="true" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/car.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+            <state relative-caret-position="514">
+              <caret line="41" column="23" lean-forward="true" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -152,10 +96,10 @@
         <option value="$PROJECT_DIR$/statistiche.php" />
         <option value="$PROJECT_DIR$/sql/inserisciValutazioneProcedure.sql" />
         <option value="$PROJECT_DIR$/inserireValutazione.php" />
-        <option value="$PROJECT_DIR$/sql/prenotazioneProcedure.sql" />
         <option value="$PROJECT_DIR$/inserisciPrenotazione.html" />
-        <option value="$PROJECT_DIR$/inserisciPrenotazione.php" />
         <option value="$PROJECT_DIR$/car.php" />
+        <option value="$PROJECT_DIR$/sql/prenotazioneProcedure.sql" />
+        <option value="$PROJECT_DIR$/inserisciPrenotazione.php" />
       </list>
     </option>
   </component>
@@ -245,12 +189,12 @@
       <workItem from="1554396355308" duration="27000" />
       <workItem from="1554396934971" duration="246000" />
       <workItem from="1554453040318" duration="13019000" />
-      <workItem from="1554708249663" duration="11059000" />
+      <workItem from="1554708249663" duration="12451000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49813000" />
+    <option name="totallyTimeSpent" value="51205000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -263,7 +207,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49671772" visible="true" weight="0.17895442" />
       <window_info id="Structure" order="1" sideWeight="0.50328225" side_tool="true" weight="0.1769437" />
@@ -466,13 +409,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sql/inserisciPrenotazioneProcedure.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="11" lean-forward="true" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sql/segnalazioneTable.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -578,10 +514,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/inserireValutazione.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/inserisciPrenotazione.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
+        <state relative-caret-position="184">
           <caret line="9" column="54" lean-forward="true" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql/inserisciPrenotazioneProcedure.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="11" lean-forward="true" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/car.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="42" column="63" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="63" />
         </state>
       </provider>
     </entry>
@@ -592,31 +549,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inserireValutazione.php">
+    <entry file="file://$PROJECT_DIR$/sql/prenotazioneProcedure.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+        <state relative-caret-position="299">
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inserisciPrenotazione.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sql/prenotazioneProcedure.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/car.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+        <state relative-caret-position="514">
+          <caret line="41" column="23" lean-forward="true" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
         </state>
       </provider>
     </entry>

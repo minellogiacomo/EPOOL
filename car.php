@@ -40,7 +40,7 @@ class car
 
     public function insertPrenotazione( $Note,  $Automobile, $Emailt, $IndirizzoPartenza, $IndirizzoArrivo){
         try{
-            $query = $this -> db -> prepare("CALL Prenotazione( '$Note', ' $Automobile',' $Emailt', '$IndirizzoPartenza', '$IndirizzoArrivo',@res)");
+            $query = $this -> db -> prepare("CALL PrenotazioneP( '$Note', ' $Automobile',' $Emailt', '$IndirizzoPartenza', '$IndirizzoArrivo',@res)");
             $query -> execute();
             $query -> closeCursor();
 
