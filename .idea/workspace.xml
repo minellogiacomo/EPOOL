@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a714aa5-6a1b-40d7-b831-12b22efce042" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stati.php" beforeDir="false" afterPath="$PROJECT_DIR$/stati.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/statistiche.php" beforeDir="false" afterPath="$PROJECT_DIR$/statistiche.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,26 +35,7 @@
     <favorites_list name="EPOOL" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stati.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/statistiche.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -99,13 +82,14 @@
         <option value="$PROJECT_DIR$/inserireValutazione.html" />
         <option value="$PROJECT_DIR$/sql/valutazioneTable.sql" />
         <option value="$PROJECT_DIR$/business.php" />
-        <option value="$PROJECT_DIR$/stati.php" />
         <option value="$PROJECT_DIR$/sql/inserisciValutazioneProcedure.sql" />
         <option value="$PROJECT_DIR$/inserireValutazione.php" />
         <option value="$PROJECT_DIR$/inserisciPrenotazione.html" />
         <option value="$PROJECT_DIR$/car.php" />
         <option value="$PROJECT_DIR$/sql/prenotazioneProcedure.sql" />
         <option value="$PROJECT_DIR$/inserisciPrenotazione.php" />
+        <option value="$PROJECT_DIR$/stati.php" />
+        <option value="$PROJECT_DIR$/sql/MediaVotoUtenteVISTA.sql" />
         <option value="$PROJECT_DIR$/statistiche.php" />
       </list>
     </option>
@@ -198,11 +182,12 @@
       <workItem from="1554453040318" duration="13019000" />
       <workItem from="1554708249663" duration="12451000" />
       <workItem from="1554721478314" duration="1040000" />
+      <workItem from="1554728094409" duration="1697000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52245000" />
+    <option name="totallyTimeSpent" value="53942000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -216,7 +201,7 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49671772" visible="true" weight="0.18096514" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49671772" visible="true" weight="0.18297587" />
       <window_info id="Structure" order="1" sideWeight="0.50328225" side_tool="true" weight="0.1769437" />
       <window_info id="Favorites" order="2" sideWeight="0.50328225" side_tool="true" weight="0.1769437" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -243,13 +228,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/registerUser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/registerBusiness.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="482">
@@ -557,17 +535,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sql/MediaVotoUtenteVISTA.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/stati.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="115">
+          <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/statistiche.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+        <state relative-caret-position="276">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
         </state>
       </provider>
     </entry>

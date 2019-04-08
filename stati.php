@@ -19,7 +19,7 @@ class stati
     public function getClassificaVoto(){
 
         try {
-            $sql='SELECT *  FROM VEICOLI_DISPONIBILI where 1=1 ';
+            $sql='SELECT *  FROM media_voto_utente ';
             $res=$this -> db ->query($sql);
             return $res;
         }
