@@ -15,8 +15,8 @@ while ($row=$res->fetch(PDO::FETCH_ASSOC)) {
 $res = $object -> getClassificaVoto();
 while ($row=$res->fetch(PDO::FETCH_ASSOC)) {
     echo '<div>';
-  //  echo $row['EMAIL'];
-    //echo $row['NUMERO_SEGNALAZIONI'];
+    echo $row['EMAIL'];
+    echo $row['VOTOMEDIO'];
     echo '</div>';
 }
 
