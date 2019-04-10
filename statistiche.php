@@ -1,6 +1,6 @@
-<?php include('header.html');?>
-<?php include('menuUser.html');?>
-<?php include('menuBusiness.html');?>
+<?php include 'header.html';?>
+<?php include 'menu.html';?>
+<?php include 'slider.html';?>
 <?php include('stati.php');?>
 <?php
 $object = new Stati();

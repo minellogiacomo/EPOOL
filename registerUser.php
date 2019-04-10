@@ -20,7 +20,7 @@ if(isset($_POST['signup'])){
     if ($res=true) {
       $_SESSION["email"] = $email;
       $_SESSION["password"] = $password;
-	  header("Location: login.php");
+	  header("Location: index.php");
     }else{
       //echo "Utente già presente nella piattaforma.";
       //echo "messaggio dal server : $res";
@@ -31,5 +31,7 @@ if(isset($_POST['signup'])){
 
 ?>
 <?php include 'header.html';?>
+<?php include 'menu.html';?>
+<?php include 'slider.html';?>
 <?php include 'registerUser.html';?>
 <?php include 'footer.html';?>

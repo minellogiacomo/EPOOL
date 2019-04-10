@@ -5,13 +5,14 @@ if(!isset($_SESSION))
 } ;
 
 if (!isset($_SESSION["email"]) or !isset($_SESSION["password"])){
-    header("location: login.php");
+    header("location: index.php");
 }
 
 ?>
 <?php include_once('business.php');?>
-<?php include('header.html');?>
-<?php include('menuUser.html');?>
+<?php include 'header.html';?>
+<?php include 'menu.html';?>
+<?php include 'slider.html';?>
 <?php
 $object = new Business();
 $res = $object -> getInfoAziende();

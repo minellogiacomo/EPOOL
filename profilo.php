@@ -10,8 +10,9 @@
   
 ?>
 <?php include_once('user.php');?>
-<?php include('header.html');?>
-<?php include('menuUser.html');?>
+<?php include 'header.html';?>
+<?php include 'menu.html';?>
+<?php include 'slider.html';?>
 <?php
 $object = new User();
 $res = $object -> getInfoUtente($_SESSION["email"]);

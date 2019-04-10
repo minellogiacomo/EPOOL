@@ -132,7 +132,27 @@ class car
 	}
 
 
-	
+    public function insertTragitto($Email){
+        try{
+            $query = $this -> db -> prepare("CALL InserisciTragitto('$Email',@res)");
+            $query -> execute();
+            $query -> closeCursor();
+
+            $query_select = $this -> db -> prepare("SELECT @res");
+            $query_select -> execute();
+            $result = $query_select ->fetch();
+            $query_select->closeCursor();
+
+            //TO DO: ADD MONGODB LOG query+log
+
+            $risultato = $result['@res'];
+            echo $risultato;
+        }catch(PDOException $e) {
+            return ("[ERRORE] op non riuscito. Errore: ".$e->getMessage());
+            // exit();
+        }
+        return $risultato;
+    }
 
 }
 

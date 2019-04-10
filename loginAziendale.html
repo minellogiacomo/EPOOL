@@ -1,38 +1,23 @@
-<!DOCTYPE html>
-
-<html>
-	
-
-<body>
-	
-	<div id = "Header">
-		<hr><h2 class="ex1"> LOGIN Aziendale </h2></hr>
-	</div>
-
-	<div class="center" id = content>
-		<form action='loginAziendale.php' method="post" >
-			<table>
-				<tr>
-					<td> <b class="ex1"> Email:   </b></td>
-					<td><input type="text" name="email" placeholder="Email" required /></td>
-				</tr>
-				<tr>
-					<td> <b class="ex1"> Password:   </b></td>
-					<td><input type="password" name="password" placeholder="********" required /></td>
-				</tr>
-			</table>
-			<input type="submit" name="submit" value="Login" />
+<!-- Book Taxi Section -->
+<div class="book-taxi-section">
+	<!-- Container -->
+	<div class="container">
+		<!-- Section Header -->
+		<div class="section-header section-header-white">
+			<h6>Login Aziendale</h6>
+		</div><!-- Section Header -->
+		<form class="row" action='loginAziendale.php' method="post">
+			<div class="form-group col-lg-4 col-md-6">
+				<label>Email</label>
+				<input type="text" name="email" placeholder="Email" required class="form-control"/>
+			</div>
+			<div class="form-group col-lg-4 col-md-6">
+				<label>Password</label>
+				<input type="password" name="password" placeholder="********" required class="form-control" />
+			</div>
+			<div class="form-group col-12 car-type">
+				<span><input type="submit" name="submit"  value="LOGIN" /></span>
+			</div>
 		</form>
-		<div>
-		<a href= "registerUser.php" class="text-center new-account">Create an Account </a>
-	    </div>
-		<div>
-		<a href= "registerBusiness.php" class="text-center new-account">Create a Business Account </a>
-	    </div>
-		
-	</div>
-
-
-</body>
-
-</html>
+	</div><!-- Container /- -->
+</div><!-- Book Taxi Section /- -->

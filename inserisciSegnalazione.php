@@ -9,8 +9,9 @@
 	  }
 ?>
 <?php include_once('car.php');?>
-<?php include('header.html');?>
-<?php include('menuUser.html');?>
+<?php include 'header.html';?>
+<?php include 'menu.html';?>
+<?php include 'slider.html';?>
 <?php
 $object = new Car();
 $res = $object -> getVeicoli();

@@ -9,9 +9,9 @@ if (!isset($_SESSION["email"]) or !isset($_SESSION["password"])){
 }
 ?>
 <?php include_once('business.php');?>
-<?php include('header.html');?>
-<?php include('menuUser.html');?>
-<?php include('menuBusiness.html');?>
+<?php include 'header.html';?>
+<?php include 'menu.html';?>
+<?php include 'slider.html';?>
 <?php
 if(isset($_POST['submit'])){
     $Testo=$_POST['Testo'];
