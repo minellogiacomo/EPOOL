@@ -32,7 +32,7 @@ if(isset($_POST["inserisciFoto"])) {
                 $fileNameNew = $fileCode.".".$fileActualExt;
                 $fileDestination = 'uploads/'.$fileNameNew;
                 $res = $object -> insertFoto($_SESSION["email"],$fileDestination);
-                echo $res;
+
                 move_uploaded_file($fileTmpName, $fileDestination);
                 //header("Location: ");
             }else{
