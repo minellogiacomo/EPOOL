@@ -3,7 +3,7 @@
  if(!isset($_SESSION)) 
     { 
         session_start();
-        echo "creo sessione register ";
+
     } 
 include_once('business.php');
 

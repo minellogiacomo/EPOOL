@@ -1,32 +1,37 @@
-<div id = "Header">
-    <hr>
-    <h2 class="ex1"> segnalazione </h2>
-</div>
+<!-- Book Taxi Section -->
+<div class="book-taxi-section">
+    <!-- Container -->
+    <div class="container">
+        <!-- Section Header -->
+        <div class="section-header section-header-white">
+            <h6>Segnalazione</h6>
+        </div><!-- Section Header -->
+        <form class="row" action='inserisciSegnalazione.php' method="post">
+            <div class="form-group col-lg-4 col-md-6">
+                <label>Società Automobile</label>
+                <input type="text" name="SocietaAutomobile" placeholder="Società Automobile" required class="form-control"/>
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label>Data Segnalazione</label>
+                <input type="date" name="DataSegnalazione"  required class="form-control" />
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label>Titolo Segnalazione</label>
+                <input type="text" name="TitoloSegnalazione" placeholder="Titolo Segnalazione" required class="form-control"/>
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label>Testo Segnalazione</label>
+                <input type="text" name="TestoSegnalazione" placeholder="Testo Segnalazione" required class="form-control"/>
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label>Automobile</label>
+                <input type="text" name="Automobile" placeholder="Automobile" required class="form-control"/>
+            </div>
+            <div class="form-group col-12 car-type">
+                <span><input type="submit"  name="submit1" value="Submit" /></span>
+            </div>
+        </form>
+    </div><!-- Container /- -->
+</div><!-- Book Taxi Section /- -->
 
-<div class="center" id = content>
-    <form action='inserisciSegnalazione.php' method="post" >
-        <table>
-            <tr>
-                <td> <b class="ex1"> SocietaAutomobile:   </b></td>
-                <td><input type="text" name="SocietaAutomobile" placeholder="SocietaAutomobile" required /></td>
-            </tr>
-            <tr>
-                <td> <b class="ex1"> DataSegnalazione:   </b></td>
-                <td><input type="date" name="DataSegnalazione" required /></td>
-            </tr>
-            <tr>
-                <td> <b class="ex1"> TitoloSegnalazione:   </b></td>
-                <td><input type="text" name="TitoloSegnalazione" placeholder="TitoloSegnalazione" required /></td>
-            </tr>
-            <tr>
-                <td> <b class="ex1"> TestoSegnalazione:   </b></td>
-                <td><input type="text" name="TestoSegnalazione" placeholder="TestoSegnalazione" required /></td>
-            </tr>
-            <tr>
-                <td> <b class="ex1"> Automobile:   </b></td>
-                <td><input type="text" name="Automobile" placeholder="Automobile" required /></td>
-            </tr>
-        </table>
-        <input type="submit" name="submit1" value="Segnala" />
-    </form>
-</div>
+

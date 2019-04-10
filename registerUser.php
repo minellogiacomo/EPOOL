@@ -3,7 +3,7 @@
  if(!isset($_SESSION)) 
     { 
         session_start();
-        echo "registrazione";
+
     } 
 include_once('user.php');
 

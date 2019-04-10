@@ -1,29 +1,33 @@
-<div id = "Header">
-    <hr>
-    <h2 class="ex1"> prenotazione </h2>
-</div>
+<!-- Book Taxi Section -->
+<div class="book-taxi-section">
+    <!-- Container -->
+    <div class="container">
+        <!-- Section Header -->
+        <div class="section-header section-header-white">
+            <h6>Prenota</h6>
+        </div><!-- Section Header -->
+        <form class="row" action='inserisciPrenotazione.php' method="post">
+            <div class="form-group col-lg-4 col-md-6">
+                <label>Note</label>
+                <input type="text" name="Note" placeholder="Note" required class="form-control"/>
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label>Auto</label>
+                <input type="text" name="Auto" placeholder="Auto" required class="form-control"/>
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label>Indirizzo di Partenza</label>
+                <input type="text" name="IndirizzoPartenza" placeholder="Indirizzo di Partenza" required class="form-control"/>
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label>Indirizzo di Arrivo</label>
+                <input type="date" name="IndirizzoArrivo" placeholder="Indirizzo di Arrivo" required class="form-control"/>
+            </div>
+            <div class="form-group col-12 car-type">
+                <span><input type="submit"  name="submit1" value="Prenota" /></span>
+            </div>
+        </form>
+    </div><!-- Container /- -->
+</div><!-- Book Taxi Section /- -->
 
-<div class="center" id = content>
-    <form action='inserisciPrenotazione.php' method="post" >
-        <table>
-            <tr>
-                <td> <b class="ex1"> Note:   </b></td>
-                <td><input type="text" name="Note" placeholder="Note" required /></td>
-            </tr>
-            <tr>
-                <td> <b class="ex1"> Auto:   </b></td>
-                <td><input type="text" name="Auto" placeholder="Auto" required /></td>
-            </tr>
 
-            <tr>
-                <td> <b class="ex1"> IndirizzoPartenza:   </b></td>
-                <td><input type="text" name="IndirizzoPartenza" placeholder="IndirizzoPartenza" required /></td>
-            </tr>
-            <tr>
-                <td> <b class="ex1"> IndirizzoArrivo:   </b></td>
-                <td><input type="text" name="IndirizzoArrivo" placeholder="IndirizzoArrivo" required /></td>
-            </tr>
-        </table>
-        <input type="submit" name="submit1" value="submit1" />
-    </form>
-</div>

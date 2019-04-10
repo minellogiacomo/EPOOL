@@ -1,11 +1,6 @@
 <?php
 
 include_once('connection.php');
-
-if(!isset($_SESSION)){
-    session_start();
-}
-
 class stati
 {
     private $db;
