@@ -17,6 +17,18 @@ class User
 
     }
 
+    public function getBookingList($email){
+        try{
+            $sql = "SELECT *
+               FROM PRENOTAZIONE
+               WHERE UTENTE = '$email'";
+            $res= $this-> db ->query($sql);
+            return $res;
+        }catch(PDOException $e) {
+            return("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
+        }
+    }
+
     public function visualizzaFoto($email){
         try {
             $sql='SELECT PATHFOTO FROM FOTO WHERE FOTO.EMAIL_UTENTE="'.$email.'";';
