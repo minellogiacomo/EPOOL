@@ -13,11 +13,15 @@ if(isset($_POST['submit'])){
 	$object = new User();
 	$risultato = $object ->Login($email, $password);
 	if ($risultato==true) {
+		if(isset($_SESSION))
+		{
+			session_unset();
+		}
 		$_SESSION["email"] = $email;
 		$_SESSION["password"] = $password;
-		//$object -> getInfoUser($nickname, $password);
-		header("Location: homeUser.php"); 
-		die();
+		$risultato = $object -> getInfoUserType($email);
+		$_SESSION["type"] = $risultato;
+		header("Location: homeUser.php");
 	}else{
 		echo "<script type='text/javascript'>alert('Credenziali errate');</script>";
 		//echo "Credenziali errate";

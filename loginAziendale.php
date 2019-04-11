@@ -1,4 +1,5 @@
-<?php 
+<?php ob_start(); ?>
+<?php
 include_once('business.php');
  if(!isset($_SESSION)) 
     { 
@@ -11,9 +12,13 @@ if(isset($_POST['submit'])){
 	$object = new Business();
 	$risultato = $object ->LoginBusiness($email, $password);
 	if ($risultato==true) {
+		if(isset($_SESSION))
+		{
+			session_unset();
+		}
 		$_SESSION["email"] = $email;
 		$_SESSION["password"] = $password;
-		//$object -> getInfoUser($nickname, $password);
+		$_SESSION["type"]=3;
 		header("Location: homeBusiness.php"); 
 		die();
 	}else{

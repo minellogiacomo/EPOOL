@@ -28,6 +28,26 @@ class User
             return("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
         }
     }
+    public function getInfoUserType($email){
+
+        try {
+
+            $query = $this -> db -> prepare("CALL LoginType('$email',@res)");
+            $query -> execute();
+            $query2 = $this -> db -> prepare("SELECT @res");
+            $query2 -> execute();
+            $result = $query2 -> fetch();
+            $query2->closeCursor();
+
+            $risultato = $result['@res'];
+
+        } catch (PDOException $e) {
+            return "[Errore] LoginType non andato a buon fine ".$e->getMessage();
+            // return $e->getMessage();
+
+        }
+        return $risultato;
+    }
 
     public function visualizzaFoto($email){
         try {

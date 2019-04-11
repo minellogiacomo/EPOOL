@@ -3,10 +3,10 @@
     { 
         session_start(); 
     } ;
-	
-  if (!isset($_SESSION["email"]) or !isset($_SESSION["password"])){
-	  header("location: index.php");
-	  }
+
+if (!isset($_SESSION["email"]) or !isset($_SESSION["password"]) or $_SESSION["type"]==1){
+    header("location: index.php");
+}
   
 ?>
 <?php include 'header.html';?>
