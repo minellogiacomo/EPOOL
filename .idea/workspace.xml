@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a714aa5-6a1b-40d7-b831-12b22efce042" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/connectionMongo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql/loginAziendaleProcedure.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql/loginTypeProcedure.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/business.php" beforeDir="false" afterPath="$PROJECT_DIR$/business.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cercaPrenota.php" beforeDir="false" afterPath="$PROJECT_DIR$/cercaPrenota.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homeBusiness.php" beforeDir="false" afterPath="$PROJECT_DIR$/homeBusiness.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inserireTragitto.php" beforeDir="false" afterPath="$PROJECT_DIR$/inserireTragitto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inserireValutazione.php" beforeDir="false" afterPath="$PROJECT_DIR$/inserireValutazione.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loginAziendale.php" beforeDir="false" afterPath="$PROJECT_DIR$/loginAziendale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/connectionMongo.php" beforeDir="false" afterPath="$PROJECT_DIR$/connectionMongo.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,8 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/connectionMongo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="11" lean-forward="true" selection-end-line="11" />
+            <state relative-caret-position="336">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -143,8 +133,9 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
-    <option name="width" value="980" />
-    <option name="height" value="1040" />
+    <option name="y" value="-10" />
+    <option name="width" value="978" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -171,9 +162,10 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
+    <property name="editor.config.ad.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../php/php.exe" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -239,12 +231,13 @@
       <workItem from="1554989295926" duration="1185000" />
       <workItem from="1554990702808" duration="1992000" />
       <workItem from="1554993420739" duration="901000" />
-      <workItem from="1554997305493" duration="725000" />
+      <workItem from="1554997305493" duration="2890000" />
+      <workItem from="1555001028717" duration="1185000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81826000" />
+    <option name="totallyTimeSpent" value="85176000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -259,7 +252,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49671772" visible="true" weight="0.21648793" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49671772" visible="true" weight="0.15549597" />
       <window_info id="Structure" order="1" sideWeight="0.50328225" side_tool="true" weight="0.1769437" />
       <window_info id="Favorites" order="2" sideWeight="0.50328225" side_tool="true" weight="0.1769437" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -309,13 +302,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2476">
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/menu.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
@@ -632,10 +618,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../phpMyAdmin/vendor/autoload.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/connectionMongo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" lean-forward="true" selection-end-line="11" />
+        <state relative-caret-position="336">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
