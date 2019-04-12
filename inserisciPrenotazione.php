@@ -8,27 +8,28 @@ if (!isset($_SESSION["email"]) or !isset($_SESSION["password"])){
     header("location: index.php");
 }
 ?>
-<?php include_once('car.php');?>
+<?php include 'car.php';?>
 <?php include 'header.html';?>
 <?php include 'menu.html';?>
 <?php include 'slider.html';?>
 <?php
-if(isset($_POST['submit1'])){
+if(isset($_POST['submit'])){
     $Note=$_POST['Note'];
     $Automobile=$_POST['Auto'];
     $IndirizzoPartenza=$_POST['IndirizzoPartenza'];
     $IndirizzoArrivo=$_POST['IndirizzoArrivo'];
 
-    $objectc = new Car();
-    $res = $objectc -> insertPrenotazione( $Note,  $Automobile, $_SESSION["email"], $IndirizzoPartenza, $IndirizzoArrivo);
+    $object = new Car();
+    $res = $object -> insertPrenotazione( $Note, $Automobile, $_SESSION["email"], $IndirizzoPartenza, $IndirizzoArrivo);
     if ($res==true) {
         echo "<script type='text/javascript'>alert('Operazione eseguita');</script>";
-        header("Location: homeUser.php");
+        //header("Location: homeUser.php");
+        echo "<script type='text/javascript'>document.location.href='homeUser.php';</script>";
         // echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
     }else{
         echo "<script type='text/javascript'>alert('Error');</script>";
-        //echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
-        header("Location: homeUser.php");
+        echo "<script type='text/javascript'>document.location.href='homeUser.php';</script>";
+       // header("Location: homeUser.php");
     }
 }
 ?>

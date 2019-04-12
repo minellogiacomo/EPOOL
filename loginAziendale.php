@@ -23,8 +23,7 @@ if(isset($_POST['submit'])){
 		die();
 	}else{
 		echo "<script type='text/javascript'>alert('Credenziali errate');</script>";
-		//echo "Credenziali errate";
-		echo " msgdb : $risultato";
+		header("Location: index.php");
 	}
 }
 ?>

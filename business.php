@@ -2,7 +2,7 @@
 
 
 include_once('connection.php');
-
+include_once('connectionMongo.php');
 if(!isset($_SESSION)){ 
     session_start(); 
 }
@@ -61,8 +61,9 @@ class Business
 			$query_select_signup -> execute();
 			$result = $query_select_signup ->fetch();
 			$query_select_signup->closeCursor();
-			//TO DO: ADD MONGODB LOG query+log
 			$risultato = $result['@res'];
+            $doc=array("Query" => $query_signup, "Risultato" => $risultato);
+            mongoLog($doc);
 		}catch(PDOException $e) {
     		return ("[ERRORE] SignUp non riuscito. Errore: ".$e->getMessage());
     		// exit();
@@ -79,8 +80,9 @@ class Business
             $query_select-> execute();
             $result = $query_select ->fetch();
             $query_select->closeCursor();
-            //TO DO: ADD MONGODB LOG query+log
             $risultato = $result['@res'];
+            $doc=array("Query" => $query, "Risultato" => $risultato);
+            mongoLog($doc);
         }catch(PDOException $e) {
             return ("[ERRORE]  non riuscito. Errore: ".$e->getMessage());
             // exit();

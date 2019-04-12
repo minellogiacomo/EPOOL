@@ -1,4 +1,4 @@
-
+<?php ob_start(); ?>
 <?php
   if(!isset($_SESSION))
     {
@@ -19,7 +19,8 @@ if(isset($_POST['submit1'])){
     $TitoloSegnalazione=$_POST['TitoloSegnalazione'];
     $TestoSegnalazione=$_POST['TestoSegnalazione'];
     $Automobile=$_POST['Automobile'];
-    $res = $object -> insertSegnalazione($_SESSION["email"], $SocietaAutomobile, $DataSegnalazione,$TitoloSegnalazione, $TestoSegnalazione,$Automobile);
+    $objectt = new Car();
+    $res = $objectt -> insertSegnalazione($_SESSION["email"], $SocietaAutomobile, $DataSegnalazione,$TitoloSegnalazione, $TestoSegnalazione,$Automobile);
     if ($res==true) {
         echo "<script type='text/javascript'>alert('Operazione eseguita');</script>";
         header("Location: homeUser.php");

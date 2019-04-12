@@ -1,7 +1,7 @@
 <?php
 
 include_once('connection.php');
-
+include_once('connectionMongo.php');
 if(!isset($_SESSION)){
     session_start();
 }
@@ -83,15 +83,13 @@ class User
     }
 
     public function logoutUser() {
-        session_destroy();
+        //session_destroy();
         unset($_SESSION['email']);
         unset($_SESSION['password']);
         return true;
     }
 
     public function registerUser($nome, $cognome, $email, $password, $dataNascita, $citta){
-
-
         try{
 
             $query_signup = $this -> db -> prepare("CALL RegistrazioneUtente ('$email','$password', '$nome', '$cognome','$dataNascita','$citta')");
@@ -102,12 +100,9 @@ class User
             $query_select_signup -> execute();
             $result = $query_select_signup ->fetch();
             $query_select_signup->closeCursor();
-            // $this -> db ->closeCursor();
-
-            //TO DO: ADD MONGODB LOG query+log
-
-            //$risultato = $result['@res'];
-
+            $risultato = $result['@res'];
+            $doc=array("Query" => $query_signup, "Risultato" => $risultato);
+            mongoLog($doc);
         }catch(PDOException $e) {
             return ("[ERRORE] SignUp non riuscito. Errore: ".$e->getMessage());
             // exit();
@@ -143,35 +138,6 @@ class User
         }
     }
 
-    public function deleteUtente($email, $password){
-
-        try{
-
-            $query = $this -> db -> prepare("CALL DeleteUtente('$email','$password',@res)");
-            $query->execute();
-            $query->closeCursor();
-
-            $query2 = $this -> db -> prepare("SELECT @res");
-            $query2 -> execute();
-            $result = $query2 -> fetch();
-            $query2->closeCursor();
-
-            $risultato = $result['@res'];
-
-        }
-        catch(PDOException $e) {
-            echo("[ERRORE] Delete User non riuscita. Errore: ".$e->getMessage());
-
-        }
-
-        if ($risultato == 1){
-            header("home.php");
-            die();
-        }else{
-            echo "Error !";
-        }
-    }
-
     public function insertFoto($email, $path){
         try {
             $query = $this -> db -> prepare("CALL InsertFoto('$email','$path',@res)");
@@ -181,6 +147,8 @@ class User
             $result = $query2 -> fetch();
             $query2->closeCursor();
             $risultato = $result['@res'];
+            $doc=array("Query" => $query, "Risultato" => $risultato);
+            mongoLog($doc);
         } catch (PDOException $e) {
             return "[Errore] Login non andato a buon fine ".$e->getMessage();
         }
