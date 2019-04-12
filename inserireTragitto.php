@@ -17,7 +17,6 @@ if(isset($_POST['submit'])){
 
     $object = new Car();
     $res = $object -> insertTragitto($_SESSION["email"]);
-
     if ($res==true) {
         echo "<script type='text/javascript'>alert('Operazione eseguita');</script>";
         header("Location: homeBusiness.php");

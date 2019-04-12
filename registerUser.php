@@ -1,30 +1,30 @@
 <?php
- 
- if(!isset($_SESSION)) 
-    { 
-        session_start();
 
-    } 
+if(!isset($_SESSION))
+{
+    session_start();
+
+}
 include_once('user.php');
 
 if(isset($_POST['signup'])){
-  $nome=$_POST['nome'];
-  $cognome=$_POST['cognome'];
-  $email=$_POST['email'];
-  $password=$_POST['password'];
-  $dataNascita=$_POST['datanascita'];
-  $citta=$_POST['citta'];
+    $nome=$_POST['nome'];
+    $cognome=$_POST['cognome'];
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+    $dataNascita=$_POST['datanascita'];
+    $citta=$_POST['citta'];
 
-  $object = new User();
-  $res = $object -> registerUser($nome, $cognome, $email,  $password, $dataNascita, $citta);
+    $object = new User();
+    $res = $object -> registerUser($nome, $cognome, $email,  $password, $dataNascita, $citta);
     if ($res=true) {
-      $_SESSION["email"] = $email;
-      $_SESSION["password"] = $password;
-	  header("Location: index.php");
+        $_SESSION["email"] = $email;
+        $_SESSION["password"] = $password;
+        header("Location: index.php");
     }else{
-      //echo "Utente già presente nella piattaforma.";
-      //echo "messaggio dal server : $res";
-      // exit();
+        //echo "Utente già presente nella piattaforma.";
+        //echo "messaggio dal server : $res";
+        // exit();
     }
 
 }

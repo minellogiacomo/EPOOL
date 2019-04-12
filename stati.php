@@ -8,7 +8,6 @@ class stati
     public function __construct(){
         $this -> db = new Connection();
         $this -> db = $this -> db -> dbConnect();
-
     }
     //Visualizzare la classifica degli utenti premium/dipendenti sulla base del voto medio ricevuto da altri utenti
     public function getClassificaVoto(){

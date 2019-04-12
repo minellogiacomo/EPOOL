@@ -1,13 +1,13 @@
-<?php 
-  if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    } ;
-	
-  if (!isset($_SESSION["email"]) or !isset($_SESSION["password"])){
-	  header("location: index.php");
-	  }
-  
+<?php
+if(!isset($_SESSION))
+{
+    session_start();
+} ;
+
+if (!isset($_SESSION["email"]) or !isset($_SESSION["password"])){
+    header("location: index.php");
+}
+
 ?>
 <?php include_once('car.php');?>
 <?php include 'header.html';?>

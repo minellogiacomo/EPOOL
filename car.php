@@ -1,20 +1,17 @@
 <?php
-
 include_once('connection.php');
 include_once('connectionMongo.php');
-if(!isset($_SESSION)){ 
-    session_start(); 
+if(!isset($_SESSION)){
+    session_start();
 }
-
 class car
 {
-	private $db;
+    private $db;
+    public function __construct(){
+        $this -> db = new Connection();
+        $this -> db = $this -> db -> dbConnect();
 
-	public function __construct(){
-		$this -> db = new Connection();
-		$this -> db = $this -> db -> dbConnect();
-
-	}
+    }
 
     public function insertSegnalazione($Email, $SocietaAutomobile, $DataSegnalazione,$TitoloSegnalazione, $TestoSegnalazione,$Automobile){
         try{
@@ -54,29 +51,26 @@ class car
         return $risultato;
     }
 
-	public function registerVeicolo(){
-		try{
-
-			$query_signup = $this -> db -> prepare("CALL RegistrazioneVeicolo ()");
-			$query_signup -> execute();
-			$query_signup->closeCursor();
-			$query_select_signup = $this -> db -> prepare("SELECT @res");
-			$query_select_signup -> execute();
-			$result = $query_select_signup ->fetch();
-			$query_select_signup->closeCursor();
-			$risultato = $result['@res'];
+    public function registerVeicolo(){
+        try{
+            $query_signup = $this -> db -> prepare("CALL RegistrazioneVeicolo ()");
+            $query_signup -> execute();
+            $query_signup->closeCursor();
+            $query_select_signup = $this -> db -> prepare("SELECT @res");
+            $query_select_signup -> execute();
+            $result = $query_select_signup ->fetch();
+            $query_select_signup->closeCursor();
+            $risultato = $result['@res'];
             $doc=array("Query" => $query_signup, "Risultato" => $risultato);
             mongoLog($doc);
-		}catch(PDOException $e) {
-    		return ("[ERRORE] RegistrazioneVeicolo non riuscito. Errore: ".$e->getMessage());
-    		// exit();
-  		}
-
-		return $risultato;
-	}
+        }catch(PDOException $e) {
+            return ("[ERRORE] RegistrazioneVeicolo non riuscito. Errore: ".$e->getMessage());
+            // exit();
+        }
+        return $risultato;
+    }
 
     public function getVeicoliDisponibili(){
-
         try {
             $sql='SELECT *  FROM VEICOLI_DISPONIBILI';
             $res=$this -> db ->query($sql);
@@ -89,7 +83,6 @@ class car
     }
 
     public function getVeicoli(){
-
         try {
             $sql='SELECT *  FROM VEICOLO';
             $res=$this -> db ->query($sql);
@@ -107,7 +100,6 @@ class car
             $query = $this -> db -> prepare("CALL InserisciTragitto('$Email',@res)");
             $query -> execute();
             $query -> closeCursor();
-
             $query_select = $this -> db -> prepare("SELECT @res");
             $query_select -> execute();
             $result = $query_select ->fetch();
@@ -123,7 +115,5 @@ class car
     }
 
 }
-
-
 
 ?>
