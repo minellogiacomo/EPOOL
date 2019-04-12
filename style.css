@@ -347,6 +347,9 @@ h1,h2,h3,h4,h5,h6,p,a,li,span {
 	padding: 24px 119px 24px 65px;
 	margin: 3px;
 }
+.map {
+	height: 100%;
+}
 .header_s .menu-block .ownavigation .navbar-nav li a {
 	color: #000;
 	font-size: 14px;

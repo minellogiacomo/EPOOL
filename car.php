@@ -82,6 +82,18 @@ class car
         }
     }
 
+    public function getLocation($area){
+        try {
+            $sql='SELECT *  FROM SOSTA WHERE SOSTA.INDIRIZZO="'.$area.'";';
+            $res=$this -> db ->query($sql);
+            return $res;
+        }
+        catch(PDOException $e) {
+            echo("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
+            // exit();
+        }
+    }
+
     public function getVeicoli(){
         try {
             $sql='SELECT *  FROM VEICOLO';

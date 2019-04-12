@@ -34,6 +34,18 @@ class Business
         return $risultato;
     }
 
+    public function visualizzaPdf($nome){
+        try {
+            $sql='SELECT PDF.PATH FROM PDF WHERE PDF.NOME_SOCIETA="'.$nome.'";';
+            $result=$this -> db ->query($sql);
+            return $result;
+        }
+        catch(PDOException $e) {
+            return("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
+            // exit();
+        }
+    }
+
     public function getInfoAziende(){
 
         try {
@@ -46,6 +58,7 @@ class Business
             // exit();
         }
     }
+
     public function getInfoSocieta(){
 
         try {

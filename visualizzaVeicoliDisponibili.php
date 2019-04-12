@@ -43,8 +43,26 @@ while ($row=$res->fetch(PDO::FETCH_ASSOC)) {
                 <label>Area di Sosta</label>
                 <input type="text"  Value="'.$row['AREA_SOSTA'].'" readonly class="form-control"/>
      </div>';
+     $objectm = new Car();
+     $response = $objectm -> getLocation($row['AREA_SOSTA']);
+     while ($rowl=$response->fetch(PDO::FETCH_ASSOC)) {
+         echo $rowl['LAT'];
+         echo $rowl['LNG'];
+        echo'<div class="book-taxi-section"><div class="form-group" style="width:500px; height:500px" id="map"></div></div>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById(\'map\'), {
+          center: {lat: '.$rowl['LAT'].', lng: '.$rowl['LNG'].'},
+          zoom: 8
+        });
+      }
+    </script>';
+     }
 }
 echo'</form></div></div>';
+echo'<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0YRwZoZHgqg7hMRgE2Xt1WkXKgMvg0QA&callback=initMap"
+    async defer></script>';
 
 ?>
 <?php include('visualizzaVeicoliDisponibili.html');?>

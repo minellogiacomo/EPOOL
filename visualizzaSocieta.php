@@ -31,10 +31,19 @@ echo'<div class="book-taxi-section">  <div class="container"> 	<div class="secti
         <label>Telefono</label>
         <input type="text"  Value="'.$row['TELEFONO'].'" readonly class="form-control"/>
     </div>';
-    //echo'<hr>...</hr>';
+    $objectPdf = new Business();
+    $resp = $objectPdf -> visualizzaPdf($row['NOME']);
+    while ($rowl=$resp->fetch(PDO::FETCH_ASSOC)) {
+        if (!empty($rowl['PATH'])){
+    echo ' <div class="form-group col-lg-4 col-md-6">
+        <embed src="'.$rowl['PATH'].'"  type="application/pdf" />
+    </div>';
+    }
+    }
+    echo'<hr>...</hr>';
     }
     echo'</form></div></div>';
 
 ?>
-<?php include('visualizzaAziende.html');?>
+<?php //include('visualizza.html');?>
 <?php include('footer.html');?>
