@@ -4,15 +4,32 @@ include_once('connectionMongo.php');
 if(!isset($_SESSION)){
     session_start();
 }
+
+/**
+ * Class car
+ */
 class car
 {
     private $db;
+
+    /**
+     * car constructor.
+     */
     public function __construct(){
         $this -> db = new Connection();
         $this -> db = $this -> db -> dbConnect();
 
     }
 
+    /**
+     * @param $Email
+     * @param $SocietaAutomobile
+     * @param $DataSegnalazione
+     * @param $TitoloSegnalazione
+     * @param $TestoSegnalazione
+     * @param $Automobile
+     * @return string
+     */
     public function insertSegnalazione($Email, $SocietaAutomobile, $DataSegnalazione,$TitoloSegnalazione, $TestoSegnalazione,$Automobile){
         try{
             $query = $this -> db -> prepare("CALL InserisciSegnalazione('$Email', '$SocietaAutomobile', '$DataSegnalazione', '$TitoloSegnalazione', '$TestoSegnalazione', '$Automobile',@res)");
@@ -32,6 +49,14 @@ class car
         return $risultato;
     }
 
+    /**
+     * @param $Note
+     * @param $Automobile
+     * @param $Email
+     * @param $IndirizzoPartenza
+     * @param $IndirizzoArrivo
+     * @return string
+     */
     public function insertPrenotazione( $Note,  $Automobile, $Email, $IndirizzoPartenza, $IndirizzoArrivo){
         try{
             $query = $this -> db -> prepare("CALL InserisciPrenotazione( '$Note', '$Automobile','$Email', '$IndirizzoPartenza', '$IndirizzoArrivo',@res)");
@@ -51,6 +76,9 @@ class car
         return $risultato;
     }
 
+    /**
+     * @return string
+     */
     public function registerVeicolo(){
         try{
             $query_signup = $this -> db -> prepare("CALL RegistrazioneVeicolo ()");
@@ -70,6 +98,9 @@ class car
         return $risultato;
     }
 
+    /**
+     * @return false|PDOStatement
+     */
     public function getVeicoliDisponibili(){
         try {
             $sql='SELECT *  FROM VEICOLI_DISPONIBILI';
@@ -82,6 +113,10 @@ class car
         }
     }
 
+    /**
+     * @param $area
+     * @return false|PDOStatement
+     */
     public function getLocation($area){
         try {
             $sql='SELECT *  FROM SOSTA WHERE SOSTA.INDIRIZZO="'.$area.'";';
@@ -94,6 +129,9 @@ class car
         }
     }
 
+    /**
+     * @return false|PDOStatement
+     */
     public function getVeicoli(){
         try {
             $sql='SELECT *  FROM VEICOLO';
@@ -107,6 +145,10 @@ class car
     }
 
 
+    /**
+     * @param $Email
+     * @return string
+     */
     public function insertTragitto($Email){
         try{
             $query = $this -> db -> prepare("CALL InserisciTragitto('$Email',@res)");

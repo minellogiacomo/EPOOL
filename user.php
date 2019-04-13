@@ -6,6 +6,9 @@ if(!isset($_SESSION)){
     session_start();
 }
 
+/**
+ * Class User
+ */
 class User
 {
     private $db;
@@ -16,6 +19,10 @@ class User
 
     }
 
+    /**
+     * @param $email
+     * @return false|PDOStatement|string
+     */
     public function getBookingList($email){
         try{
             $sql = "SELECT *
@@ -27,6 +34,11 @@ class User
             return("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
         }
     }
+
+    /**
+     * @param $email
+     * @return string
+     */
     public function getInfoUserType($email){
 
         try {
@@ -48,6 +60,10 @@ class User
         return $risultato;
     }
 
+    /**
+     * @param $email
+     * @return false|PDOStatement|string
+     */
     public function visualizzaFoto($email){
         try {
             $sql='SELECT PATHFOTO FROM FOTO WHERE FOTO.EMAIL_UTENTE="'.$email.'";';
@@ -60,6 +76,11 @@ class User
         }
     }
 
+    /**
+     * @param $email
+     * @param $password
+     * @return string
+     */
     public function Login($email, $password){
 
         try {
@@ -81,6 +102,9 @@ class User
         return $risultato;
     }
 
+    /**
+     * @return bool
+     */
     public function logoutUser() {
         //session_destroy();
         unset($_SESSION['email']);
@@ -88,6 +112,15 @@ class User
         return true;
     }
 
+    /**
+     * @param $nome
+     * @param $cognome
+     * @param $email
+     * @param $password
+     * @param $dataNascita
+     * @param $citta
+     * @return string
+     */
     public function registerUser($nome, $cognome, $email, $password, $dataNascita, $citta){
         try{
 
@@ -110,6 +143,10 @@ class User
         //return $risultato;
     }
 
+    /**
+     * @param $email
+     * @return false|PDOStatement
+     */
     public function getInfoUtente($email){
 
         try {
@@ -124,6 +161,10 @@ class User
         }
     }
 
+    /**
+     * @param $email
+     * @return false|PDOStatement
+     */
     public function getInfoUtenti($email){
 
         try {
@@ -137,6 +178,11 @@ class User
         }
     }
 
+    /**
+     * @param $email
+     * @param $path
+     * @return string
+     */
     public function insertFoto($email, $path){
         try {
             $query = $this -> db -> prepare("CALL InsertFoto('$email','$path',@res)");

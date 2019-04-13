@@ -1,6 +1,10 @@
 <?php
 
 include_once('connection.php');
+
+/**
+ * Class stati
+ */
 class stati
 {
     private $db;
@@ -10,6 +14,10 @@ class stati
         $this -> db = $this -> db -> dbConnect();
     }
     //Visualizzare la classifica degli utenti premium/dipendenti sulla base del voto medio ricevuto da altri utenti
+
+    /**
+     * @return false|PDOStatement
+     */
     public function getClassificaVoto(){
 
         try {
@@ -24,6 +32,10 @@ class stati
     }
 
     //Visualizzare la classifica degli utenti più attivi, calcolata in base al numero di segnalazioni inserite
+
+    /**
+     * @return false|PDOStatement
+     */
     public function getClassificaSegnalazioni(){
 
         try {
@@ -38,6 +50,10 @@ class stati
     }
 
     //Visualizzare la classifica dei modelli di veicolo più prenotati all’interno della piattaforma
+
+    /**
+     * @return false|PDOStatement
+     */
     public function getClassificaVeicoli(){
 
         try {

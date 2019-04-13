@@ -1,4 +1,7 @@
 <?php
+/**
+ * @param $document
+ */
 function mongoLog($document){
     if(extension_loaded("mongodb")){
         try {
