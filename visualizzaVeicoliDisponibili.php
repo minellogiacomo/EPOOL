@@ -21,42 +21,42 @@ echo'<div class="book-taxi-section">  <div class="container"> 	<div class="secti
 while ($row=$res->fetch(PDO::FETCH_ASSOC)) {
     echo ' <div class="form-group col-lg-4 col-md-6">
                 <label>Targa</label>
-                <input type="text"  Value="'.$row['TARGA'].'" readonly class="form-control"/>
+                <input type="text"  Value="' . $row['TARGA'] . '" readonly class="form-control"/>
      </div>';
     echo ' <div class="form-group col-lg-4 col-md-6">
                 <label>Modello</label>
-                <input type="text"  Value="'.$row['MODELLO'].'" readonly class="form-control"/>
+                <input type="text"  Value="' . $row['MODELLO'] . '" readonly class="form-control"/>
      </div>';
     echo ' <div class="form-group col-lg-4 col-md-6">
                 <label>Capienza</label>
-                <input type="number"  Value="'.$row['CAPIENZA'].'" readonly class="form-control"/>
+                <input type="number"  Value="' . $row['CAPIENZA'] . '" readonly class="form-control"/>
      </div>';
     echo ' <div class="form-group col-lg-4 col-md-6">
                 <label>Descrizione</label>
-                <input type="text"  Value="'.$row['DESCRIZIONE'].'" readonly class="form-control"/>
+                <input type="text"  Value="' . $row['DESCRIZIONE'] . '" readonly class="form-control"/>
      </div>';
     echo ' <div class="form-group col-lg-4 col-md-6">
                 <label>Società</label>
-                <input type="text"  Value="'.$row['SOCIETA'].'" readonly class="form-control"/>
+                <input type="text"  Value="' . $row['SOCIETA'] . '" readonly class="form-control"/>
      </div>';
     echo ' <div class="form-group col-lg-4 col-md-6">
                 <label>Area di Sosta</label>
-                <input type="text"  Value="'.$row['AREA_SOSTA'].'" readonly class="form-control"/>
+                <input type="text"  Value="' . $row['AREA_SOSTA'] . '" readonly class="form-control"/>
      </div>';
-     $objectm = new Car();
-     $response = $objectm -> getLocation($row['AREA_SOSTA']);
-     while ($rowl=$response->fetch(PDO::FETCH_ASSOC)) {
-        echo'<div class="book-taxi-section"><div  style="width:300px; height:300px" id="map"></div></div>
+    $objectm = new Car();
+    $response = $objectm->getLocation($row['AREA_SOSTA']);
+    while ($rowl = $response->fetch(PDO::FETCH_ASSOC)) {
+        echo '<div class="book-taxi-section"><div  style="width:300px; height:300px" id="map"></div></div>
     <script>
       var map;
       function initMap() {
         map = new google.maps.Map(document.getElementById(\'map\'), {
-          center: {lat: '.$rowl['LAT'].', lng: '.$rowl['LNG']. '},
-          15
+          center: {lat: ' . $rowl['LAT'] . ', lng: ' . $rowl['LNG'] . '},
+          zoom: 8
         });
       }
     </script>';
-     }
+    }
 }
 echo'</form></div></div>';
 echo'<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0YRwZoZHgqg7hMRgE2Xt1WkXKgMvg0QA&callback=initMap"
