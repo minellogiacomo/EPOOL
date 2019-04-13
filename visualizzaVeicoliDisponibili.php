@@ -46,15 +46,13 @@ while ($row=$res->fetch(PDO::FETCH_ASSOC)) {
      $objectm = new Car();
      $response = $objectm -> getLocation($row['AREA_SOSTA']);
      while ($rowl=$response->fetch(PDO::FETCH_ASSOC)) {
-         echo $rowl['LAT'];
-         echo $rowl['LNG'];
-        echo'<div class="book-taxi-section"><div class="form-group" style="width:500px; height:500px" id="map"></div></div>
+        echo'<div class="book-taxi-section"><div  style="width:300px; height:300px" id="map"></div></div>
     <script>
       var map;
       function initMap() {
         map = new google.maps.Map(document.getElementById(\'map\'), {
-          center: {lat: '.$rowl['LAT'].', lng: '.$rowl['LNG'].'},
-          zoom: 8
+          center: {lat: '.$rowl['LAT'].', lng: '.$rowl['LNG']. '},
+          15
         });
       }
     </script>';
