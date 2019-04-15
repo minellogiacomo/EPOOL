@@ -1,4 +1,48 @@
 <!-- Book Taxi Section -->
+<script>
+    function addFields(){
+        var number = document.getElementById("nTappe").value;
+        var itm = document.getElementById("form-group col-lg-4 col-md-6");
+        var cln = itm.cloneNode(true);
+        //document.getElementById("container").appendChild(cln);
+        cln.removeChild(cln.lastChild);
+        cln.removeChild(cln.lastChild);
+        cln.removeChild(cln.lastChild);
+        for (i=0;i<number;i++){
+            cln.append('<label>Citta</label>');
+            var input = document.createElement("input");
+            input.type = "text";
+            input.name = "partenza"+ (i+1);
+            input.class="form-control";
+            cln.appendChild(input);
+            cln.append('<label>via</label>');
+            var input = document.createElement("input");
+            input.type = "text";
+            input.name = "via"+ (i+1);
+            input.class="form-control";
+            cln.appendChild(input);
+            cln.append('<label>orario</label>');
+            var input = document.createElement("input");
+            input.type = "date";
+            input.name = "orario"+ (i+1);
+            input.class="form-control";
+            cln.appendChild(input);
+            //cln.appendChild(document.createTextNode("nTappe " + (i+1)));
+
+            document.getElementById("container1").appendChild(cln);
+        }
+
+        input = document.createElement("button");
+        input.type="submit";
+        input.id="inv";
+        input.value="submit";
+        input.name="submit";
+
+        cln.appendChild(input);
+        document.getElementById("container1").appendChild(cln);
+        //document.getElementById("container1").append('<div class="form-group col-12 car-type"> <span><input  type="submit" id="filldetails"  name="signup" value="Sign up" /></span> </div>');
+    }
+</script>
 <div class="book-taxi-section">
     <!-- Container -->
     <div class="container">
@@ -6,18 +50,21 @@
         <div class="section-header section-header-white">
             <h6>Tragitto</h6>
         </div><!-- Section Header -->
-        <form class="row" action='inserireTragitto.php' method="post">
-
-            <div class="form-group col-lg-4 col-md-6">
-                <label>Testo</label>
-                <input type="text" name="testo" placeholder="testo" required class="form-control"/>
+        <form class="row" id="container1" action='inserireTragitto.php' method="post">
+            <div class="form-group col-lg-4 col-md-6" id="form-group col-lg-4 col-md-6"  >
+                <label>Numero di tappe</label>
+                <input type="number" name="nTappe" id="nTappe" placeholder="" min="0" required class="form-control"/>
+            </div>
+            <div class="form-group col-lg-4 col-md-6" >
+                <label>km</label>
+                <input type="number" name="km" placeholder="" min="0" required class="form-control"/>
             </div>
             <div class="form-group col-lg-4 col-md-6">
-                <label>Città</label>
-                <input type="text" name="citta" placeholder="Città" required class="form-control"/>
+                <label>Tipo</label>
+                <input type="text" name="tipo" placeholder="tipo" required class="form-control"/>
             </div>
             <div class="form-group col-12 car-type">
-                <span><input type="submit"  name="signup" value="Sign up" /></span>
+                <span><input type="button"  id="filldetails" onclick="addFields()" name="signup" value="Sign up" /></span>
             </div>
         </form>
     </div><!-- Container /- -->

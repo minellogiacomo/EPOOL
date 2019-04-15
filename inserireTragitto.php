@@ -13,19 +13,27 @@ if (!isset($_SESSION["email"]) or !isset($_SESSION["password"]) or $_SESSION["ty
 <?php include 'slider.html';?>
 <?php
 if(isset($_POST['submit'])){
-    $Testo=$_POST['Testo'];
-
+    $km=$_POST['km'];
+    $tipo=$_POST['tipo'];
+    $numero=$_POST['nTappe'];
     $object = new Car();
-    $res = $object -> insertTragitto($_SESSION["email"]);
-    if ($res==true) {
-        echo "<script type='text/javascript'>alert('Operazione eseguita');</script>";
-        header("Location: homeBusiness.php");
-        // echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
-    }else{
-        echo "<script type='text/javascript'>alert('Errorrrate');</script>";
-        //echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
-        header("Location: homeBusiness.php");
-    }
+    $res = $object -> insertTragitto($_SESSION["email"],$km,$tipo);
+    if (!empty($res)){
+            for ($i = 0; $i < $numero; $i++) {
+                $id=$res;
+                $citta = $_POST['partenza' . ($i + 1)];
+                $via = $_POST['via' . ($i + 1)];
+                $orario = $_POST['orario' . ($i + 1)];
+                $res = $object->insertTappa($id, $citta, $via, $orario);
+
+            }
+            //echo "<script type='text/javascript'>alert('var_dump($id)');</script>";
+            //header("Location: homeBusiness.php")
+        } else {
+            // echo "<script type='text/javascript'>alert('Errorrrate');</script>";
+            //echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+            header("Location: homeBusiness.php");
+        }
 }
 ?>
 <?php include('inserireTragitto.html');?>

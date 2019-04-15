@@ -149,9 +149,9 @@ class car
      * @param $Email
      * @return string
      */
-    public function insertTragitto($Email){
+    public function insertTragitto($Email,$km,$tipo){
         try{
-            $query = $this -> db -> prepare("CALL InserisciTragitto('$Email',@res)");
+            $query = $this -> db -> prepare("CALL InserisciTragitto('$Email','$km','$tipo',@res)");
             $query -> execute();
             $query -> closeCursor();
             $query_select = $this -> db -> prepare("SELECT @res");
@@ -167,6 +167,34 @@ class car
         }
         return $risultato;
     }
+
+    /**
+     * @param $id
+     * @param $citta
+     * @param $via
+     * @param $orario
+     * @return string
+     */
+    public function insertTappa($id,$citta,$via,$orario){
+        try{
+            $query = $this -> db -> prepare("CALL InserisciTappa('$id','$citta','$via','$orario')");
+            $query -> execute();
+            $query -> closeCursor();
+            $query_select = $this -> db -> prepare("SELECT @res");
+            $query_select -> execute();
+            $result = $query_select ->fetch();
+            $query_select->closeCursor();
+            $risultato = $result['@res'];
+            $doc=array("Query" => $query, "Risultato" => $risultato);
+            mongoLog($doc);
+        }catch(PDOException $e) {
+            return ("[ERRORE] op non riuscito. Errore: ".$e->getMessage());
+            // exit();
+        }
+        return $risultato;
+    }
+
+
 
 }
 
