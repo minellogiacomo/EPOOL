@@ -149,32 +149,7 @@ class Business
         return $risultato;
     }
 
-    /**
-     * @param $Note
-     * @param $Automobile
-     * @param $Email
-     * @param $IndirizzoPartenza
-     * @param $IndirizzoArrivo
-     * @return string
-     */
-    public function insertPrenotazioneAziendale($Tragitto, $Note,  $Automobile, $Email, $IndirizzoPartenza, $IndirizzoArrivo){
-        try{
-            $query = $this -> db -> prepare("CALL InserisciPrenotazioneAziendale('$Tragitto','$Note', '$Automobile','$Email', '$IndirizzoPartenza', '$IndirizzoArrivo',@res)");
-            $query -> execute();
-            $query -> closeCursor();
-            $query_select = $this -> db -> prepare("SELECT @res");
-            $query_select -> execute();
-            $result = $query_select ->fetch();
-            $query_select->closeCursor();
-            $risultato = $result['@res'];
-            $doc=array("Query" => $query, "Risultato" => $risultato);
-            mongoLog($doc);
-        }catch(PDOException $e) {
-            return ("[ERRORE] op non riuscito. Errore: ".$e->getMessage());
-            // exit();
-        }
-        return $risultato;
-    }
+
 
 }
 

@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
     $IndirizzoArrivo=$_POST['IndirizzoArrivo'];
     $Email=$_SESSION["email"];
     $object = new Business();
-    $res = $object -> insertPrenotazioneAziendale($Tragitto, $Note,  $Automobile, $Email, $IndirizzoPartenza, $IndirizzoArrivo);
+   // $res = $object -> insertPassaggio($Tragitto, $Note,  $Automobile, $Email, $IndirizzoPartenza, $IndirizzoArrivo);
     if ($res==true) {
         echo "<script type='text/javascript'>alert('Operazione eseguita');</script>";
         echo "<script type='text/javascript'>document.location.href='homeBusiness.php';</script>";

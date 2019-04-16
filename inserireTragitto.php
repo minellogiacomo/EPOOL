@@ -19,6 +19,13 @@ if(isset($_POST['submit'])){
     $object = new Car();
     $res = $object -> insertTragitto($_SESSION["email"],$km,$tipo);
     if (!empty($res)){
+        $Note=$_POST['Note'];
+        $Automobile=$_POST['Auto'];
+        $IndirizzoPartenza=$_POST['IndirizzoPartenza'];
+        $IndirizzoArrivo=$_POST['IndirizzoArrivo'];
+        $Email=$_SESSION["email"];
+        $objecttmp = new Car();
+        $response= $objecttmp -> insertPrenotazioneAziendale($res, $Note,  $Automobile, $Email, $IndirizzoPartenza, $IndirizzoArrivo);
             for ($i = 0; $i < $numero; $i++) {
                 $id=$res;
                 $citta = $_POST['partenza' . ($i + 1)];

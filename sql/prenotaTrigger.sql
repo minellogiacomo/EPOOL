@@ -1,0 +1,14 @@
+DELIMITER |
+
+CREATE TRIGGER AggiornaPostiDisponibili
+    AFTER INSERT ON PASSAGGIO
+    FOR EACH ROW
+BEGIN
+    UPDATE TAPPA
+        SET TAPPA.POSTI=TAPPA.POSTI-1
+        WHERE TAPPA.VIA=new.INDIRIZZO_ARRIVO and
+              tappa.ID_TRAGITTO=new.ID_TAPPA
+              ;
+END;
+|
+DELIMITER ;
