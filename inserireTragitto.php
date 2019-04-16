@@ -27,12 +27,12 @@ if(isset($_POST['submit'])){
                 $res = $object->insertTappa($id, $citta, $via, $orario);
 
             }
-            //echo "<script type='text/javascript'>alert('var_dump($id)');</script>";
-            //header("Location: homeBusiness.php")
+            echo "<script type='text/javascript'>alert('Operazione Eseguita');</script>";
+           // header("Location: homeBusiness.php");
+           echo "<script type='text/javascript'>document.location.href='homeBusiness.php';</script>";
         } else {
-            // echo "<script type='text/javascript'>alert('Errorrrate');</script>";
-            //echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
-            header("Location: homeBusiness.php");
+            echo "<script type='text/javascript'>alert('Errorrrate');</script>";
+        echo "<script type='text/javascript'>document.location.href='homeBusiness.php';</script>";
         }
 }
 ?>

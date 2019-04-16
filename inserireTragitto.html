@@ -3,32 +3,51 @@
     function addFields(){
         var number = document.getElementById("nTappe").value;
         var itm = document.getElementById("form-group col-lg-4 col-md-6");
-        var cln = itm.cloneNode(true);
-        //document.getElementById("container").appendChild(cln);
-        cln.removeChild(cln.lastChild);
-        cln.removeChild(cln.lastChild);
-        cln.removeChild(cln.lastChild);
         for (i=0;i<number;i++){
+            var cln = itm.cloneNode(true);
+            //document.getElementById("container").appendChild(cln);
+            cln.removeChild(cln.lastChild);
+            cln.removeChild(cln.lastChild);
+            cln.removeChild(cln.lastChild);
             cln.append('<label>Citta</label>');
             var input = document.createElement("input");
             input.type = "text";
             input.name = "partenza"+ (i+1);
             input.class="form-control";
-            cln.appendChild(input);
+            var div = document.createElement("div");
+            div.class="form-group col-lg-4 col-md-6";
+            div.appendChild(input);
+            cln.appendChild(div);
+            document.getElementById("container1").appendChild(cln);
+
+            cln = itm.cloneNode(true);
+            cln.removeChild(cln.lastChild);
+            cln.removeChild(cln.lastChild);
+            cln.removeChild(cln.lastChild);
             cln.append('<label>via</label>');
-            var input = document.createElement("input");
+            input = document.createElement("input");
             input.type = "text";
             input.name = "via"+ (i+1);
             input.class="form-control";
-            cln.appendChild(input);
+            div = document.createElement("div");
+            div.class="form-group col-lg-4 col-md-6";
+            div.appendChild(input);
+            cln.appendChild(div);
+            document.getElementById("container1").appendChild(cln);
+
+            cln = itm.cloneNode(true);
+            cln.removeChild(cln.lastChild);
+            cln.removeChild(cln.lastChild);
+            cln.removeChild(cln.lastChild);
             cln.append('<label>orario</label>');
-            var input = document.createElement("input");
+            input = document.createElement("input");
             input.type = "date";
             input.name = "orario"+ (i+1);
             input.class="form-control";
-            cln.appendChild(input);
-            //cln.appendChild(document.createTextNode("nTappe " + (i+1)));
-
+            div = document.createElement("div");
+            div.class="form-group col-lg-4 col-md-6";
+            div.appendChild(input);
+            cln.appendChild(div);
             document.getElementById("container1").appendChild(cln);
         }
 
@@ -37,8 +56,11 @@
         input.id="inv";
         input.value="submit";
         input.name="submit";
-
-        cln.appendChild(input);
+        input.class="form-control";
+        div = document.createElement("div");
+        div.class="form-group col-lg-4 col-md-6";
+        div.appendChild(input);
+        cln.appendChild(div);
         document.getElementById("container1").appendChild(cln);
         //document.getElementById("container1").append('<div class="form-group col-12 car-type"> <span><input  type="submit" id="filldetails"  name="signup" value="Sign up" /></span> </div>');
     }
@@ -52,7 +74,7 @@
         </div><!-- Section Header -->
         <form class="row" id="container1" action='inserireTragitto.php' method="post">
             <div class="form-group col-lg-4 col-md-6" id="form-group col-lg-4 col-md-6"  >
-                <label>Numero di tappe</label>
+                <label>Tappe</label>
                 <input type="number" name="nTappe" id="nTappe" placeholder="" min="0" required class="form-control"/>
             </div>
             <div class="form-group col-lg-4 col-md-6" >
@@ -64,7 +86,7 @@
                 <input type="text" name="tipo" placeholder="tipo" required class="form-control"/>
             </div>
             <div class="form-group col-12 car-type">
-                <span><input type="button"  id="filldetails" onclick="addFields()" name="signup" value="Sign up" /></span>
+                <span><input type="button"  id="filldetails" onclick="addFields()" name="signup" class="form-control" value="Sign up" /></span>
             </div>
         </form>
     </div><!-- Container /- -->
