@@ -1,0 +1,64 @@
+/**
+ * Description: Place all style modifications in this file.
+ * Version: <x.x.x>
+ * Last update: <date>
+ * Author: <fullname>
+ *
+ * Summary:
+ *
+ *    1. Global
+ *        - 1.1. Font
+ *        - 1.2. Hyperlink color
+ *    2. Navigation
+ *    3. Menu
+ *    4. Content
+ *    5. Footer
+ */
+
+/* ==========================================================================
+   1. Global
+   ========================================================================== */
+
+/* 1.1. Font
+   ========================================================================== */
+
+body {
+   font-family: "Open Sans", "Segoe UI", Arial;
+   line-height: 150%;
+}
+
+body.font-size-small  { font-size: 13px; }
+body.font-size-medium { font-size: 14px; }
+body.font-size-large  { font-size: 15px; }
+
+h1, h2, h3,
+h4, h5, h6 {
+   font-family: "Open Sans", Arial;
+}
+
+/* 1.2. Hyperlink color
+   ========================================================================== */
+
+a { color: #4679C6; }
+a:hover { color: #04589f; }
+
+/* ==========================================================================
+   3. Menu
+   ========================================================================== */
+
+#aside,
+#aside .tree,
+#aside .tree ul li:last-child ,
+#aside .tree ul li.expand:last-child,
+#aside .tree ul li.narrow:last-child {
+	background-color: #f9fafb;
+   border-color: #edf0f6;
+}
+
+/* ==========================================================================
+   4. Content
+   ========================================================================== */
+
+#content {
+	background-color: white;
+}

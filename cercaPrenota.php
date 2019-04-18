@@ -16,14 +16,12 @@ if (!isset($_SESSION["email"]) or !isset($_SESSION["password"]) or $_SESSION["ty
 
 if(isset($_POST['submit'])){
     $Tragitto=$_POST['Tragitto'];
-    $Note=$_POST['Note'];
-    $Automobile=$_POST['Auto'];
     $IndirizzoPartenza=$_POST['IndirizzoPartenza'];
     $IndirizzoArrivo=$_POST['IndirizzoArrivo'];
     $Email=$_SESSION["email"];
     $object = new Business();
-   // $res = $object -> insertPassaggio($Tragitto, $Note,  $Automobile, $Email, $IndirizzoPartenza, $IndirizzoArrivo);
-    if ($res==true) {
+    $res = $object -> insertPassaggio($Tragitto,$Email,$IndirizzoPartenza,$IndirizzoArrivo);
+    if ($res!==false) {
         echo "<script type='text/javascript'>alert('Operazione eseguita');</script>";
         echo "<script type='text/javascript'>document.location.href='homeBusiness.php';</script>";
         // echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";

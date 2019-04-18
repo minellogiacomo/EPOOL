@@ -1,0 +1,174 @@
+/**
+ * Description: Integrate imported descriptions with application textbox style.
+ *              It's recommended to NOT MODIFY THIS FILE.
+ * Version: 1.0.0
+ * Last update: 2016/08/12
+ * Author: Wojciech Mleczek
+ */
+
+.html {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+.html body {
+    line-height:1;
+}
+
+.html article, .html aside, .html details, .html figcaption, .html figure,
+.html footer, .html header, .html hgroup, .html menu, .html nav, .html section {
+    display:block;
+}
+
+.html nav ul {
+    list-style:none;
+}
+
+.html ul {
+    padding-bottom: 0px !important;
+}
+
+.html blockquote, .html q {
+    quotes:none;
+}
+
+.html blockquote:before, .html blockquote:after,
+.html q:before, .html q:after {
+    content:'';
+    content:none;
+}
+
+.html a,
+.html a * {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+    text-decoration: none !important;
+    color: #4679C6 !important;
+}
+
+.html a:hover,
+.html a:hover * {
+    color: #04589f !important;
+}
+
+.html ins {
+    background-color: #ff9;
+    color: #000;
+    text-decoration:none;
+}
+
+.html mark {
+    background-color: #ff9;
+    color: #000;
+    font-style:italic;
+    font-weight:bold;
+}
+
+.html del {
+    text-decoration: line-through;
+}
+
+.html abbr[title], .html dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+.html .table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+.html hr {
+    display:block;
+    height:1px;
+    border:0;
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+.html input, .html select {
+    vertical-align:middle;
+}
+
+.html hr {
+    margin: 20px 0;
+    border: 0;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.1);
+}
+
+.html h1,
+.html h2,
+.html h3,
+.html h4,
+.html h5,
+.html h6 {
+    font-weight: normal;
+    margin: 10px 0;
+}
+
+.html h1 {
+    font-size: 20px;
+}
+
+.html h2 {
+    font-size: 18px;
+}
+
+.html h3 {
+    font-size: 17px;
+}
+
+.html h4 {
+    font-size: 15px;
+}
+
+.html h5 {
+    font-size: 13px;
+}
+
+.html h6 {
+    font-size: 11px;
+}
+
+.html .table {
+    width: 100%;
+}
+
+.html .table td {
+    padding: 6px 8px;
+}
+
+.html .table thead td {
+    font-weight: bold;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
+}
+
+.html .table tbody tr:hover td {
+    background: rgb(255, 255, 255);
+}
+
+.html ol,
+.html ul {
+    list-style-position: outside;
+    margin-left: 40px;
+    padding-top: 0px;
+}
+
+.html ol li,
+.html ul li {
+    padding: 0px;
+    padding-left: 8px;
+}
+
+.html p {
+    padding: 0;
+}
