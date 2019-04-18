@@ -1,20 +1,19 @@
 <?php
-if(!isset($_SESSION))
-{
+if (!isset($_SESSION)) {
     session_start();
-} ;
+};
 
-if (!isset($_SESSION["email"]) or !isset($_SESSION["password"])){
+if (!isset($_SESSION["email"]) or !isset($_SESSION["password"])) {
     header("location: index.php");
 }
 
 ?>
-<?php include_once('user.php');?>
+<?php include_once('user.php'); ?>
 <?php
 $object = new User();
 
 
-if(isset($_POST["inserisciFoto"])) {
+if (isset($_POST["inserisciFoto"])) {
     $file = $_FILES['file'];
     $file = $_FILES['file'];
     $fileName = $_FILES['file']['name'];
@@ -22,28 +21,28 @@ if(isset($_POST["inserisciFoto"])) {
     $fileSize = $_FILES['file']['size'];
     $fileError = $_FILES['file']['error'];
     $fileType = $_FILES['file']['type'];
-    $fileExt = explode('.',$fileName);
+    $fileExt = explode('.', $fileName);
     $fileActualExt = strtolower(end($fileExt));
     $allowed = array('jpg', 'jpeg', 'png', 'svg');
     if (in_array($fileActualExt, $allowed)) {
         if ($fileError === 0) {
             if ($fileSize < 1000000) {
                 $fileCode = uniqid('', true);
-                $fileNameNew = $fileCode.".".$fileActualExt;
-                $fileDestination = 'uploads/'.$fileNameNew;
-                $res = $object -> insertFoto($_SESSION["email"],$fileDestination);
+                $fileNameNew = $fileCode . "." . $fileActualExt;
+                $fileDestination = 'uploads/' . $fileNameNew;
+                $res = $object->insertFoto($_SESSION["email"], $fileDestination);
 
                 move_uploaded_file($fileTmpName, $fileDestination);
                 //header("Location: ");
-            }else{
+            } else {
                 echo "File troppo grande!";
             }
-        }else{
+        } else {
             echo "Errore nel caricamento del file!";
         }
-    }else{
+    } else {
         echo "Non puoi inserire file di questo formato!";
     }
 }
 ?>
-<?php include('inserisciFoto.html');?>
+<?php include('inserisciFoto.html'); ?>

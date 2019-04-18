@@ -157,19 +157,19 @@ class Business
      * @param $arrivo
      * @return string
      */
-    public function insertPassaggio($id,$email,$partenza,$arrivo)
+    public function insertPassaggio($id, $email, $partenza, $arrivo)
     {
         try {
             $query = $this->db->prepare("CALL inserisciPassaggio('$id','$email','$partenza','$arrivo')");
             $query->execute();
             $query->closeCursor();
             //$query_select = $this->db->prepare("SELECT @res");
-           // $query_select->execute();
+            // $query_select->execute();
             //$result = $query_select->fetch();
-           // $query_select->closeCursor();
+            // $query_select->closeCursor();
             //$risultato = $result['@res'];
-           // $doc = array("Query" => $query, "Risultato" => $risultato);
-           // mongoLog($doc);
+            // $doc = array("Query" => $query, "Risultato" => $risultato);
+            // mongoLog($doc);
         } catch (PDOException $e) {
             return ("[ERRORE]  non riuscito. Errore: " . $e->getMessage());
             // exit();

@@ -2,8 +2,9 @@
 /**
  * @param $document
  */
-function mongoLog($document){
-    if(extension_loaded("mongodb")){
+function mongoLog($document)
+{
+    if (extension_loaded("mongodb")) {
         try {
             $mng = new MongoDB\Driver\Manager("mongodb://localhost:27017");
             $bulk = new MongoDB\Driver\BulkWrite();
@@ -15,4 +16,5 @@ function mongoLog($document){
         }
     }
 }
+
 ?>

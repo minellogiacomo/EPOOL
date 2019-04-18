@@ -9,24 +9,25 @@ class stati
 {
     private $db;
 
-    public function __construct(){
-        $this -> db = new Connection();
-        $this -> db = $this -> db -> dbConnect();
+    public function __construct()
+    {
+        $this->db = new Connection();
+        $this->db = $this->db->dbConnect();
     }
     //Visualizzare la classifica degli utenti premium/dipendenti sulla base del voto medio ricevuto da altri utenti
 
     /**
      * @return false|PDOStatement
      */
-    public function getClassificaVoto(){
+    public function getClassificaVoto()
+    {
 
         try {
-            $sql='SELECT *  FROM media_voto_utente ';
-            $res=$this -> db ->query($sql);
+            $sql = 'SELECT *  FROM media_voto_utente ';
+            $res = $this->db->query($sql);
             return $res;
-        }
-        catch(PDOException $e) {
-            echo("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
+        } catch (PDOException $e) {
+            echo("[ERRORE] Query SQL non riuscita. Errore: " . $e->getMessage());
             // exit();
         }
     }
@@ -36,15 +37,15 @@ class stati
     /**
      * @return false|PDOStatement
      */
-    public function getClassificaSegnalazioni(){
+    public function getClassificaSegnalazioni()
+    {
 
         try {
-            $sql='SELECT EMAIL, COUNT(*) as NUMERO_SEGNALAZIONI  FROM  segnalazione GROUP BY EMAIL ORDER BY NUMERO_SEGNALAZIONI DESC' ;
-            $res=$this -> db ->query($sql);
+            $sql = 'SELECT EMAIL, COUNT(*) as NUMERO_SEGNALAZIONI  FROM  segnalazione GROUP BY EMAIL ORDER BY NUMERO_SEGNALAZIONI DESC';
+            $res = $this->db->query($sql);
             return $res;
-        }
-        catch(PDOException $e) {
-            echo("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
+        } catch (PDOException $e) {
+            echo("[ERRORE] Query SQL non riuscita. Errore: " . $e->getMessage());
             // exit();
         }
     }
@@ -54,21 +55,20 @@ class stati
     /**
      * @return false|PDOStatement
      */
-    public function getClassificaVeicoli(){
+    public function getClassificaVeicoli()
+    {
 
         try {
-            $sql='SELECT MODELLO, COUNT(*) as NUMERO_PRENOTAZIONI FROM prenotazione, veicolo WHERE (PRENOTAZIONE.AUTO=VEICOLO.TARGA) GROUP BY MODELLO ORDER BY NUMERO_PRENOTAZIONI DESC';
-            $res=$this -> db ->query($sql);
+            $sql = 'SELECT MODELLO, COUNT(*) as NUMERO_PRENOTAZIONI FROM prenotazione, veicolo WHERE (PRENOTAZIONE.AUTO=VEICOLO.TARGA) GROUP BY MODELLO ORDER BY NUMERO_PRENOTAZIONI DESC';
+            $res = $this->db->query($sql);
             return $res;
-        }
-        catch(PDOException $e) {
-            echo("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
+        } catch (PDOException $e) {
+            echo("[ERRORE] Query SQL non riuscita. Errore: " . $e->getMessage());
             // exit();
         }
     }
 
 }
-
 
 
 ?>

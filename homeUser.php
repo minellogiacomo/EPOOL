@@ -1,16 +1,15 @@
-<?php 
-  if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    } ;
-	
-  if (!isset($_SESSION["email"]) or !isset($_SESSION["password"])){
-	  header("location: index.php");
-	  }
-  
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+};
+
+if (!isset($_SESSION["email"]) or !isset($_SESSION["password"])) {
+    header("location: index.php");
+}
+
 ?>
-<?php include 'header.html';?>
-<?php include 'menu.html';?>
-<?php include 'slider.html';?>
-<?php include('homeUser.html');?>
-<?php include('footer.html');?>
+<?php include 'header.html'; ?>
+<?php include 'menu.html'; ?>
+<?php include 'slider.html'; ?>
+<?php include('homeUser.html'); ?>
+<?php include('footer.html'); ?>
