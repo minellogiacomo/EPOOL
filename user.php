@@ -133,7 +133,6 @@ class User
             $query_signup = $this->db->prepare("CALL RegistrazioneUtente ('$email','$password', '$nome', '$cognome','$dataNascita','$citta')");
             $query_signup->execute();
             $query_signup->closeCursor();
-
             $query_select_signup = $this->db->prepare("SELECT @res");
             $query_select_signup->execute();
             $result = $query_select_signup->fetch();
