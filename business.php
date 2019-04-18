@@ -62,6 +62,21 @@ class Business
     }
 
     /**
+     * @return false|PDOStatement|string
+     */
+    public function getInfoTappe()
+    {
+        try {
+            $sql = 'SELECT * FROM tappa where posti>0;';
+            $result = $this->db->query($sql);
+            return $result;
+        } catch (PDOException $e) {
+            return ("[ERRORE] Query SQL non riuscita. Errore: " . $e->getMessage());
+            // exit();
+        }
+    }
+
+    /**
      * @return false|PDOStatement
      */
     public function getInfoAziende()

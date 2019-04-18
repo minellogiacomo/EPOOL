@@ -12,6 +12,34 @@ if (!isset($_SESSION["email"]) or !isset($_SESSION["password"]) or $_SESSION["ty
 <?php include 'slider.html'; ?>
 <?php
 
+$objectt = new Business();
+$res = $objectt->getInfoTappe();
+echo '<div class="book-taxi-section">  <div class="container"> 	<div class="section-header section-header-white">
+			<h6>Tappe Disponibili </h6></div> <form class="row" >';
+while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+    echo ' <div class="form-group col-lg-4 col-md-6">
+                <label>Id Tragitto</label>
+                <input type="text"  Value="' . $row['ID_TRAGITTO'] . '" readonly class="form-control"/>
+     </div>';
+    echo ' <div class="form-group col-lg-4 col-md-6">
+                <label>Città</label>
+                <input type="text"  Value="' . $row['CITTA'] . '" readonly class="form-control"/>
+     </div>';
+    echo ' <div class="form-group col-lg-4 col-md-6">
+                <label>Via</label>
+                <input type="text"  Value="' . $row['VIA'] . '" readonly class="form-control"/>
+     </div>';
+    echo ' <div class="form-group col-lg-4 col-md-6">
+                <label>Posti</label>
+                <input type="text"  Value="' . $row['POSTI'] . '" readonly class="form-control"/>
+     </div>';
+    echo ' <div class="form-group col-lg-4 col-md-6">
+                <label>Orario</label>
+                <input type="datetime"  Value="' . $row['ORARIO_ARRIVO'] . '" readonly class="form-control"/>
+     </div>';
+    echo '<hr>...</hr>';
+}
+echo '</form></div></div>';
 
 if (isset($_POST['submit'])) {
     $Tragitto = $_POST['Tragitto'];
