@@ -24,8 +24,6 @@ class car
 
     /**
      * @param $Email
-     * @param $SocietaAutomobile
-     * @param $DataSegnalazione
      * @param $TitoloSegnalazione
      * @param $TestoSegnalazione
      * @param $Automobile
@@ -33,14 +31,12 @@ class car
      */
     public function insertSegnalazione(
         $Email,
-        $SocietaAutomobile,
-        $DataSegnalazione,
         $TitoloSegnalazione,
         $TestoSegnalazione,
         $Automobile
     ) {
         try {
-            $query = $this->db->prepare("CALL InserisciSegnalazione('$Email', '$SocietaAutomobile', '$DataSegnalazione', '$TitoloSegnalazione', '$TestoSegnalazione', '$Automobile',@res)");
+            $query = $this->db->prepare("CALL InserisciSegnalazione('$Email', '$TitoloSegnalazione', '$TestoSegnalazione', '$Automobile',@res)");
             $query->execute();
             $query->closeCursor();
             $query_select = $this->db->prepare("SELECT @res");
@@ -61,14 +57,13 @@ class car
      * @param $Note
      * @param $Automobile
      * @param $Email
-     * @param $IndirizzoPartenza
      * @param $IndirizzoArrivo
      * @return string
      */
-    public function insertPrenotazione($Note, $Automobile, $Email, $IndirizzoPartenza, $IndirizzoArrivo)
+    public function insertPrenotazione($Note, $Automobile, $Email,  $IndirizzoArrivo)
     {
         try {
-            $query = $this->db->prepare("CALL InserisciPrenotazione( '$Note', '$Automobile','$Email', '$IndirizzoPartenza', '$IndirizzoArrivo',@res)");
+            $query = $this->db->prepare("CALL InserisciPrenotazione( '$Note', '$Automobile','$Email', '$IndirizzoArrivo',@res)");
             $query->execute();
             $query->closeCursor();
             $query_select = $this->db->prepare("SELECT @res");
@@ -124,6 +119,21 @@ class car
     }
 
     /**
+     * @return false|PDOStatement
+     */
+    public function getSostaVeicolo()
+    {
+        try {
+            $sql = 'SELECT *  FROM SOSTA';
+            $res = $this->db->query($sql);
+            return $res;
+        } catch (PDOException $e) {
+            echo("[ERRORE] Query SQL non riuscita. Errore: " . $e->getMessage());
+            // exit();
+        }
+    }
+
+    /**
      * @param $area
      * @return false|PDOStatement
      */
@@ -154,6 +164,40 @@ class car
         }
     }
 
+    /**
+     * @param $email
+     * @param $Automobile
+     */
+    public function endBooking($email, $Automobile){
+
+        try {
+            $query = $this -> db -> prepare("CALL TerminaPrenotazione('$email','$Automobile')");
+            $query->execute();
+            $query->closeCursor();
+
+        }
+        catch(PDOException $e) {
+            echo("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
+            // exit();
+        }
+    }
+
+    /**
+     * @param $email
+     * @return false|PDOStatement
+     */
+    public function getVeicoloPrenotato($email){
+
+        try {
+            $sql='SELECT * FROM PRENOTAZIONE WHERE ((FINE IS NULL) AND (UTENTE="'.$email.'"))';
+            $res=$this -> db ->query($sql);
+            return $res;
+        }
+        catch(PDOException $e) {
+            echo("[ERRORE] Query SQL non riuscita. Errore: ".$e->getMessage());
+            // exit();
+        }
+    }
 
     /**
      * @param $Email
