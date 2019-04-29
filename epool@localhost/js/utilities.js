@@ -87,7 +87,7 @@ $(function () {
     function selectNavTreeElemByHref(relativeUrl, emulateClick) {
         if (relativeUrl.length > 0) {
             var el = $('a[data-target="#right"][href="' + relativeUrl + '"]').first();
-            if (emulateClick) {
+            if(emulateClick) {
                 el.click();
             } else {
                 el.addClass('clicked');

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 18, 2019 alle 12:06
+-- Creato il: Apr 29, 2019 alle 17:50
 -- Versione del server: 10.1.38-MariaDB
 -- Versione PHP: 7.3.2
 
@@ -43,7 +43,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `inserisciPassaggio` (IN `idN` SMALL
 							values (idN, EmailzN, partenzaN, arrivoN);
 		CALL printf ('INSERIMENTO PREMIUM AVVENUTO');	
         else
-        call printf('Cazzo vuoi 1');
+        call printf('X');
         END IF;
 
 		IF EXISTS (SELECT EMAILA
@@ -55,16 +55,25 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `inserisciPassaggio` (IN `idN` SMALL
 							values (idN, EmailzN, partenzaN, arrivoN);
         CALL printf ('INSERIMENTO AZINEDALE AVVENUTO');
 		 else
-          call printf('Cazzo vuoi 2');
+          call printf('Y');
         END IF;
 	END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InserisciPrenotazione` (IN `Notet` VARCHAR(300), IN `Automobile` VARCHAR(10), IN `Emailt` VARCHAR(30), IN `IndirizzoPartenzat` VARCHAR(30), IN `IndirizzoArrivot` VARCHAR(30), OUT `result` BOOLEAN)  BEGIN
-    start transaction;
-    SET result = (FALSE);
-    INSERT INTO `prenotazione` ( `NOTE`, `AUTO`, `UTENTE`, `INDIRIZZO_PARTENZA`, `INDIRIZZO_ARRIVO`) VALUES ( Notet, Automobile, Emailt, IndirizzoPartenzat, IndirizzoArrivot);
-    SET result = (TRUE);
-    commit work;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InserisciPrenotazione` (IN `Note` VARCHAR(300), IN `Automobile` VARCHAR(10), IN `Utente` VARCHAR(30), IN `Arrivo` VARCHAR(30), OUT `result` BOOLEAN)  BEGIN
+                                DECLARE Partenza varchar(30);
+                SET Partenza=(SELECT AREA_SOSTA 
+                FROM veicoli_disponibili WHERE veicoli_disponibili.TARGA=Automobile);
+
+
+                
+                SET result = (FALSE);
+
+
+				INSERT INTO PRENOTAZIONE (INIZIO, FINE, NOTE, AUTO, UTENTE, INDIRIZZO_PARTENZA, INDIRIZZO_ARRIVO)
+				VALUES (CURRENT_TIMESTAMP, NULL, Note, Automobile, Utente, Partenza, Arrivo);
+                
+                SET result = (TRUE);
+
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `InserisciPrenotazioneAziendale` (IN `Tragitto` SMALLINT, IN `Notet` VARCHAR(300), IN `Automobile` VARCHAR(10), IN `Emailt` VARCHAR(30), IN `IndirizzoPartenzat` VARCHAR(30), IN `IndirizzoArrivot` VARCHAR(30), OUT `result` BOOLEAN)  BEGIN
@@ -77,12 +86,19 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `InserisciPrenotazioneAziendale` (IN
     commit work;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `InserisciSegnalazione` (IN `Emailt` VARCHAR(30), IN `SocietaAutomobile` VARCHAR(30), IN `DataSegnalazione` DATE, IN `TitoloSegnalazione` VARCHAR(20), IN `TestoSegnalazione` VARCHAR(200), IN `Automobile` VARCHAR(10), OUT `result` BOOLEAN)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InserisciSegnalazione` (IN `Emailt` VARCHAR(30), IN `TitoloSegnalazione` VARCHAR(20), IN `TestoSegnalazione` VARCHAR(200), IN `Automobile` VARCHAR(10), OUT `result` BOOLEAN)  BEGIN
     start transaction;
+   
+    IF EXISTS (SELECT *
+               FROM prenotazione
+               WHERE (UTENTE=Emailt) AND (AUTO=Automobile)) THEN
+    
     SET result = (FALSE);
-    INSERT INTO `segnalazione` (`EMAIL`, `SOCIETA`, `DATA`, `TITOLO`, `TESTO`, `AUTO`) VALUES (Emailt, SocietaAutomobile, DataSegnalazione, TitoloSegnalazione, TestoSegnalazione, Automobile);
+    INSERT INTO `segnalazione` (`EMAIL`, `DATA`, `TITOLO`, `TESTO`, `AUTO`) VALUES (Emailt, CURRENT_TIMESTAMP, TitoloSegnalazione, TestoSegnalazione, Automobile);
+    Update segnalazione SET segnalazione.societa=(select societa from veicolo where targa=automobile);
     SET result = (TRUE);
     commit work;
+    END IF;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `InserisciTappa` (IN `idN` SMALLINT, IN `cittaN` VARCHAR(20), IN `viaN` VARCHAR(30), IN `orarioN` DATETIME)  BEGIN
@@ -199,15 +215,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `LoginType` (IN `Email` VARCHAR(30),
     END IF;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PrenotazioneP` (IN `NoteQ` VARCHAR(300), IN `AutoQ` VARCHAR(10), IN `UtenteQ` VARCHAR(30), IN `Partenza` VARCHAR(30), IN `Arrivo` VARCHAR(30), OUT `result` TINYINT(1))  BEGIN
-    start transaction;
-    SET result = (FALSE);
-	INSERT INTO PRENOTAZIONE (NOTE, AUTO, UTENTE, INDIRIZZO_PARTENZA, INDIRIZZO_ARRIVO)
-	VALUES ( NoteQ, AutoQ, UtenteQ, Partenza, Arrivo);
-	commit work;
-	SET result = (TRUE);
-END$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `printf` (`mytext` TEXT)  BEGIN
 
   select mytext as ``;
@@ -259,6 +266,27 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrazioneUtente` (IN `EmailN` V
         rollback;
 	END IF;
     
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `TerminaPrenotazione` (IN `Email` VARCHAR(30), IN `Auto` VARCHAR(10))  BEGIN
+    DECLARE TEMPO DATETIME DEFAULT NOW();
+    start transaction;
+    
+		
+        IF EXISTS (SELECT *
+				   FROM PRENOTAZIONE
+				   WHERE Auto = AUTO AND UTENTE = Email)
+                   
+		THEN UPDATE VEICOLO SET STATO = 'NON IN USO' WHERE TARGA = Auto;
+        UPDATE VEICOLO SET AREA_SOSTA = (SELECT INDIRIZZO_ARRIVO FROM PRENOTAZIONE WHERE Prenotazione.AUTO = Auto AND FINE is null) WHERE TARGA = Auto;
+        UPDATE PRENOTAZIONE SET FINE = TEMPO WHERE Prenotazione.AUTO = Auto;
+        
+        commit work;
+        
+        ELSE
+				CALL printf ('[ERRORE] NON ESISTE UN VEICOLO DA TE PRENOTATO CON QUESTA TARGA');
+				rollback;
+        	END IF;
 END$$
 
 DELIMITER ;
@@ -359,7 +387,9 @@ INSERT INTO `passaggio` (`ID_PASSAGGIO`, `ID_TAPPA`, `EMAILP`, `EMAILA`, `INDIRI
 (7, 39, NULL, 'q@gmail.com', 'vw', 'vw'),
 (8, 39, NULL, 'q@gmail.com', 'vwe', 'vwe'),
 (9, 39, NULL, 'q@gmail.com', 'vw', 'vw'),
-(10, 39, NULL, 'q@gmail.com', 'vw', 'vw');
+(10, 39, NULL, 'q@gmail.com', 'vw', 'vw'),
+(11, 39, NULL, 'q@gmail.com', 'via pinocchio', 'via tarzan'),
+(12, 40, NULL, 'q@gmail.com', 'via tarzan', 'v');
 
 --
 -- Trigger `passaggio`
@@ -437,7 +467,37 @@ INSERT INTO `prenotazione` (`ID`, `INIZIO`, `FINE`, `NOTE`, `AUTO`, `UTENTE`, `I
 (92, '2019-04-16 14:37:07', NULL, 'wef', 'FN1000', 'q@gmail.com', 'via pinocchio', 'via tarzan'),
 (93, '2019-04-16 14:41:11', NULL, 'f', 'FN1000', 'q@gmail.com', 'via pinocchio', 'via tarzan'),
 (94, '2019-04-16 14:44:39', NULL, 'FN1000', 'FN1000', 'q@gmail.com', 'via pinocchio', 'via tarzan'),
-(95, '2019-04-16 14:49:35', NULL, 'test', 'FN1000', 'q@gmail.com', 'via pinocchio', 'via tarzan');
+(95, '2019-04-16 14:49:35', NULL, 'test', 'FN1000', 'q@gmail.com', 'via pinocchio', 'via tarzan'),
+(96, '2019-04-25 12:34:08', NULL, 'dv', 'FN1000', 'q@gmail.com', 'via tarzan', 'via pinocchio'),
+(97, '2019-04-26 11:58:28', NULL, 'FN1000', 'FN1000', 'q@gmail.com', 'via pinocchio', 'via tarzan'),
+(98, '2019-04-26 12:11:17', NULL, 'deuibgfuiwebf', 'QR6666', 'test', 'via aristogatti', 'via cenerentola'),
+(99, '2019-04-26 12:11:41', '2019-04-26 12:21:58', 'qqqqqqqqqqqqqqqqq', 'TP8888', 'q@gmail.com', 'via cenerentola', 'via pokahontas'),
+(100, '2019-04-26 12:19:58', '2019-04-26 12:20:14', 'ooooooooooooooooo', 'JH3333', 'q@gmail.com', 'via aladin', 'via aristogatti');
+
+--
+-- Trigger `prenotazione`
+--
+DELIMITER $$
+CREATE TRIGGER `BloccaVeicolo` AFTER INSERT ON `prenotazione` FOR EACH ROW BEGIN
+    UPDATE VEICOLO SET STATO = 'IN USO' WHERE TARGA=NEW.AUTO;
+	IF ((SELECT COUNT(*) FROM prenotazione WHERE UTENTE = NEW.UTENTE) = 3)
+
+	THEN
+		
+       
+		DELETE FROM utente_semplice WHERE EMAILS IN (SELECT UTENTE 
+												      FROM PRENOTAZIONE
+		  											  WHERE PRENOTAZIONE.UTENTE = NEW.UTENTE);
+    
+   
+        INSERT INTO utente_premium (EMAILP)        (SELECT distinct (UTENTE)
+                                                    FROM  PRENOTAZIONE
+													WHERE PRENOTAZIONE.UTENTE = NEW.UTENTE);
+ 
+END IF;
+    END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -510,21 +570,23 @@ CREATE TABLE `segnalazione` (
 --
 
 INSERT INTO `segnalazione` (`ID`, `EMAIL`, `SOCIETA`, `DATA`, `TITOLO`, `TESTO`, `AUTO`) VALUES
-(1, 'oooo@g.ik', 'qqqqqqq', '2019-04-16', 'd', 'd', '1'),
-(10, 'test', 'qqqqqqq', '2019-04-10', 'qwerty ', 'qwerty ', '1'),
-(11, 'test', 'qqqqqqq', '2019-04-12', 'qwerty ', 'qaz ', '1'),
-(12, 'test', 'qqqqqqq', '2019-04-12', 'qwerty ', 'qaz ', '1'),
-(13, 'test', 'qqqqqqq', '2019-04-12', 'testo ', 'hvdebsvuibweuivfbfueibv ', '1'),
-(15, 'test', 'qqqqqqq', '2019-04-14', 'x ', 'c ', '1'),
-(16, 'test', 'qqqqqqq', '2019-04-20', 'ora ', 'ora ', '1'),
-(17, 'test', 'qqqqqqq', '2019-04-26', 'asx ', 'q ', '1'),
-(18, 'test', 'qqqqqqq', '2019-04-20', 'eewv ', 'f3f2 ', '1'),
-(19, 'test', 'qqqqqqq', '2019-04-12', '1 ', '1 ', '1'),
-(20, 'test', 'qqqqqqq', '2019-04-13', 'asx ', 'c ', '1'),
-(21, 'test', 'qqqqqqq', '2019-04-13', 'asx ', 'c ', '1'),
-(22, 'test', 'qqqqqqq', '2019-04-06', 'edhibvuiÃ²eqwBFUIOWQ', 'ADSJKCBOIQbev ', '1'),
-(23, 'test', 'qqqqqqq', '2019-04-06', 'edhibvuiÃ²eqwBFUIOWQ', 'ADSJKCBOIQbev ', '1'),
-(24, 'test', 'qqqqqqq', '2019-04-01', 'qqqqqqqqqqqqqqqqqqqq', 'aqqqqqqqqqqqqqqqqqqqqqqqqqqq ', '1');
+(1, 'oooo@g.ik', 'enjoy', '2019-04-16', 'd', 'd', '1'),
+(10, 'test', 'enjoy', '2019-04-10', 'qwerty ', 'qwerty ', '1'),
+(11, 'test', 'enjoy', '2019-04-12', 'qwerty ', 'qaz ', '1'),
+(12, 'test', 'enjoy', '2019-04-12', 'qwerty ', 'qaz ', '1'),
+(13, 'test', 'enjoy', '2019-04-12', 'testo ', 'hvdebsvuibweuivfbfueibv ', '1'),
+(15, 'test', 'enjoy', '2019-04-14', 'x ', 'c ', '1'),
+(16, 'test', 'enjoy', '2019-04-20', 'ora ', 'ora ', '1'),
+(17, 'test', 'enjoy', '2019-04-26', 'asx ', 'q ', '1'),
+(18, 'test', 'enjoy', '2019-04-20', 'eewv ', 'f3f2 ', '1'),
+(19, 'test', 'enjoy', '2019-04-12', '1 ', '1 ', '1'),
+(20, 'test', 'enjoy', '2019-04-13', 'asx ', 'c ', '1'),
+(21, 'test', 'enjoy', '2019-04-13', 'asx ', 'c ', '1'),
+(22, 'test', 'enjoy', '2019-04-06', 'edhibvuiÃ²eqwBFUIOWQ', 'ADSJKCBOIQbev ', '1'),
+(23, 'test', 'enjoy', '2019-04-06', 'edhibvuiÃ²eqwBFUIOWQ', 'ADSJKCBOIQbev ', '1'),
+(24, 'test', 'enjoy', '2019-04-01', 'qqqqqqqqqqqqqqqqqqqq', 'aqqqqqqqqqqqqqqqqqqqqqqqqqqq ', '1'),
+(25, 'q@gmail.com', 'enjoy', '2019-04-26', 'c', 'q', 'FN1000'),
+(26, 'q@gmail.com', 'enjoy', '2019-04-26', 'qazwsx', 'testo', 'FN1000');
 
 -- --------------------------------------------------------
 
@@ -599,7 +661,9 @@ INSERT INTO `tappa` (`ID_TRAGITTO`, `CITTA`, `VIA`, `LAT`, `LNG`, `ORARIO_ARRIVO
 (36, 'Bologna', 'via pinocchio', 0.000000, 0.000000, '2019-04-09 00:00:00', 1),
 (37, '3r', 'via pinocchio', 0.000000, 0.000000, '2019-04-01 00:00:00', -1),
 (39, 'weg', 'vw', 0.000000, 0.000000, '2019-04-10 00:00:00', -3),
-(39, 'ewv', 'wev', 0.000000, 0.000000, '2019-04-02 00:00:00', 0);
+(39, 'ewv', 'wev', 0.000000, 0.000000, '2019-04-02 00:00:00', 0),
+(40, 'weg', 'via pinocchio', 0.000000, 0.000000, '2019-04-17 00:00:00', 1),
+(40, 'Bologna', 'via tarzan', 0.000000, 0.000000, '2019-04-16 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -658,7 +722,8 @@ INSERT INTO `tragitto` (`ID`, `EMAILP`, `EMAILA`, `KM`, `TIPO`) VALUES
 (36, NULL, 'q@gmail.com', 1, 'URBANO'),
 (37, NULL, 'q@gmail.com', 32767, 'URBANO'),
 (38, NULL, 'q@gmail.com', 2, ''),
-(39, NULL, 'q@gmail.com', 5, 'URBANO');
+(39, NULL, 'q@gmail.com', 5, 'URBANO'),
+(40, NULL, 'q@gmail.com', 2, 'URBANO');
 
 -- --------------------------------------------------------
 
@@ -680,7 +745,8 @@ INSERT INTO `tragitto_prenotazione` (`ID_TRAG`, `ID_PREN`) VALUES
 (35, 92),
 (36, 93),
 (37, 94),
-(39, 95);
+(39, 95),
+(40, 96);
 
 -- --------------------------------------------------------
 
@@ -715,6 +781,7 @@ INSERT INTO `utente` (`EMAIL`, `PW`, `NOME`, `COGNOME`, `DATANASCITA`, `LUOGO`) 
 ('michele.buonaroti@fake.com', 'verza66', 'michelangelo', 'buonarroti', '1996-03-12', 'roma\r'),
 ('minellogiacefefomo@gmail.com', 'ewvwegv', 'Giacomo', 'Minello', '2019-04-17', 'Carbonera'),
 ('minellogiacomo+12345@gmail.com', 'qwerty', 'Giacomo', 'Minello', '2019-04-19', 'Treviso'),
+('minellogiacomo+3333@gmail.com', 'vk erv', 'cd', 'sd', '2019-04-07', 'vre'),
 ('minellogiacomofeubwij@gmail.co', 'edwv wekjV J', 'Giacomo', 'Minello', '2019-04-25', 'Carbonera'),
 ('minellogiSAVFacomo@gmail.com', 'SAVAV', 'cd', 'sd', '2019-04-03', 'Treviso'),
 ('mongo@db.test', 'test', 'test', 'test', '2019-04-12', 'test'),
@@ -863,13 +930,13 @@ CREATE TABLE `veicolo` (
 INSERT INTO `veicolo` (`TARGA`, `MODELLO`, `CAPIENZA`, `DESCRIZIONE`, `FERIALE`, `FESTIVO`, `SOCIETA`, `AREA_SOSTA`, `STATO`) VALUES
 ('1', '1', 1, '1', 1, 1, 'qqqqqqq', 'qw', 'NON IN USO'),
 ('1111', 'panda', 4, 'economica', 10, 20, 'corrente', 'via tarzan', 'NON IN USO'),
-('FN1000', 'portofino', 2, 'veloce', 100, 200, 'enjoy', 'via pinocchio', 'NON IN USO'),
+('FN1000', 'portofino', 2, 'veloce', 100, 200, 'enjoy', 'via pinocchio', 'IN USO'),
 ('IT5555', 'velar', 5, 'spaziosa', 50, 100, 'share&go', 'via tarzan', 'NON IN USO'),
-('JH3333', 'modelX', 6, 'elegante', 70, 140, 'share&go', 'via aladin', 'NON IN USO'),
+('JH3333', 'modelX', 6, 'elegante', 70, 140, 'share&go', 'via aristogatti', 'NON IN USO'),
 ('KL2222', 'aventador', 2, 'velocissima', 200, 400, 'enjoy', 'via cenerentola', 'NON IN USO'),
 ('MN9999', 'panda', 4, 'economica', 10, 20, 'corrente', 'via tarzan', 'NON IN USO'),
-('QR6666', 'phantom', 4, 'prestigiosa', 180, 360, 'corrente', 'via aristogatti', 'NON IN USO'),
-('TP8888', 'dodge', 4, 'sportiva', 60, 120, 'corrente', 'via cenerentola', 'NON IN USO'),
+('QR6666', 'phantom', 4, 'prestigiosa', 180, 360, 'corrente', 'via aristogatti', 'IN USO'),
+('TP8888', 'dodge', 4, 'sportiva', 60, 120, 'corrente', 'via pokahontas', 'NON IN USO'),
 ('UY4444', 'urus', 5, 'aggressiva', 90, 180, 'share&go', 'via pokahontas', 'NON IN USO'),
 ('XZ7777', 'batmobile', 4, 'eccentrica', 400, 800, 'corrente', 'via pinocchio', 'NON IN USO');
 
@@ -1050,7 +1117,7 @@ ALTER TABLE `foto`
 -- AUTO_INCREMENT per la tabella `passaggio`
 --
 ALTER TABLE `passaggio`
-  MODIFY `ID_PASSAGGIO` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID_PASSAGGIO` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT per la tabella `pdf`
@@ -1062,19 +1129,19 @@ ALTER TABLE `pdf`
 -- AUTO_INCREMENT per la tabella `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  MODIFY `ID` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `ID` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT per la tabella `segnalazione`
 --
 ALTER TABLE `segnalazione`
-  MODIFY `ID` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `ID` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT per la tabella `tragitto`
 --
 ALTER TABLE `tragitto`
-  MODIFY `ID` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `ID` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT per la tabella `valutazione`
